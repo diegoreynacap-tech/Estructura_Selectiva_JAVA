@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESTUDIO CROMA · Café Aroma · CSS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Work+Sans:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Work Sans',sans-serif;
+  background:rgb(245,242,234);
+  color:rgb(22,20,26);
+  min-height:100vh;
+  background-image:radial-gradient(rgb(208,202,188) 1.4px, transparent 1.4px);
+  background-size:22px 22px;
+  font-size:17px;
+}
+header {
+  position:sticky; top:0; z-index:100;
+  background:rgb(22,20,26);
+  border-bottom:4px solid rgb(22,20,26);
+  padding:14px 20px;
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+}
+.header-logo { display:flex; align-items:center; gap:12px; }
+.logo-img {
+  width:48px; height:48px; background:rgb(255,107,91);
+  border:3px solid rgb(22,20,26); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem; transform:rotate(-6deg);
+  box-shadow:3px 3px 0 rgb(255,201,60);
+}
+.logo-text { font-family:'Space Grotesk',sans-serif; font-weight:900; font-size:1.3rem; letter-spacing:.5px; color:rgb(250,248,244); text-transform:uppercase; }
+.logo-sub { font-family:'Courier Prime',monospace; font-size:.62rem; color:rgb(0,184,169); letter-spacing:2px; text-transform:uppercase; }
+.hud { display:flex; gap:10px; align-items:center; margin-left:auto; flex-wrap:wrap; }
+.hud-chip { font-family:'Courier Prime',monospace; font-size:.78rem; border:2px solid rgb(250,248,244); border-radius:20px; padding:5px 12px; background:rgb(22,20,26); color:rgb(230,225,215); }
+.hud-chip b { color:rgb(255,201,60); }
+.btn-mini { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.85rem; background:rgb(255,201,60); color:rgb(22,20,26); border:2px solid rgb(250,248,244); border-radius:20px; padding:7px 14px; cursor:pointer; }
+.btn-mini:hover { background:rgb(0,184,169); color:rgb(250,248,244); }
+
+.pantalla { display:none; max-width:1150px; margin:0 auto; padding:30px 18px 90px; }
+.pantalla.activa { display:block; animation:apar .35s ease; }
+@keyframes apar { from { opacity:0; transform:translateY(10px);} to { opacity:1; transform:none;} }
+
+.titular { font-family:'Space Grotesk',sans-serif; font-weight:900; text-align:center; font-size:clamp(2.1rem,6.5vw,3.6rem); color:rgb(22,20,26); margin:24px 0 6px; letter-spacing:-1px; text-transform:uppercase; }
+.titular span { color:rgb(255,107,91); }
+.bajada { text-align:center; font-family:'Work Sans',sans-serif; font-weight:600; color:rgb(90,85,75); font-size:1rem; margin-bottom:26px; text-transform:uppercase; letter-spacing:2px; }
+
+.tarjeta { background:rgb(255,255,255); border:3px solid rgb(22,20,26); border-radius:16px; padding:26px 28px; margin:20px auto; max-width:760px; box-shadow:7px 7px 0 rgb(22,20,26); }
+.tarjeta h2 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.15rem; color:rgb(22,20,26); margin-bottom:14px; display:inline-block; background:rgb(255,201,60); padding:4px 12px; border-radius:6px; border:2px solid rgb(22,20,26); }
+.mail { font-family:'Courier Prime',monospace; font-size:.9rem; line-height:1.85; background:rgb(245,242,234); border:2px dashed rgb(22,20,26); border-radius:10px; padding:16px 18px; margin:14px 0; color:rgb(30,28,34); white-space:pre-wrap; }
+.mail .firma { color:rgb(255,107,91); font-weight:700; }
+
+.fila-botones { display:flex; gap:12px; flex-wrap:wrap; margin-top:16px; align-items:center; }
+.btn-primario { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1rem; background:rgb(255,107,91); color:rgb(22,20,26); border:3px solid rgb(22,20,26); border-radius:10px; padding:13px 26px; cursor:pointer; box-shadow:5px 5px 0 rgb(22,20,26); transition:all .1s; text-transform:uppercase; letter-spacing:.5px; }
+.btn-primario:hover { transform:translate(2px,2px); box-shadow:3px 3px 0 rgb(22,20,26); }
+.btn-secundario { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.95rem; background:rgb(250,248,244); color:rgb(22,20,26); border:3px solid rgb(22,20,26); border-radius:10px; padding:11px 20px; cursor:pointer; box-shadow:4px 4px 0 rgb(22,20,26); transition:all .1s; }
+.btn-secundario:hover { transform:translate(2px,2px); box-shadow:2px 2px 0 rgb(22,20,26); }
+
+/* BRIEF FIJO */
+.brief-caja { background:rgb(255,255,255); border:3px solid rgb(22,20,26); border-radius:14px; margin:18px 0; overflow:hidden; box-shadow:6px 6px 0 rgb(107,79,201); }
+.brief-cab { display:flex; align-items:center; gap:10px; padding:14px 18px; cursor:pointer; background:rgb(107,79,201); color:rgb(250,248,244); }
+.brief-cab .tit { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.9rem; flex:1; text-transform:uppercase; letter-spacing:.5px; }
+.brief-cab .flecha { transition:transform .3s; }
+.brief-caja.abierta .brief-cab .flecha { transform:rotate(180deg); }
+.brief-cuerpo { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+.brief-caja.abierta .brief-cuerpo { max-height:900px; }
+.brief-inner { padding:18px 20px; }
+.brief-inner h4 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.88rem; color:rgb(107,79,201); margin:14px 0 6px; text-transform:uppercase; }
+.brief-inner p { font-size:.92rem; line-height:1.6; color:rgb(50,46,56); margin:6px 0; }
+.chip-palabra { display:inline-block; background:rgb(255,201,60); color:rgb(22,20,26); font-weight:700; border:2px solid rgb(22,20,26); border-radius:20px; padding:4px 12px; margin:3px 5px 3px 0; font-size:.8rem; letter-spacing:.5px; }
+.tabla-evitar { width:100%; border-collapse:separate; border-spacing:0 6px; margin:8px 0; font-size:.85rem; }
+.tabla-evitar td { padding:8px 10px; }
+.tabla-evitar td:first-child { color:rgb(255,255,255); font-weight:700; white-space:nowrap; background:rgb(255,107,91); border-radius:6px 0 0 6px; }
+.tabla-evitar td:last-child { background:rgb(245,242,234); border-radius:0 6px 6px 0; color:rgb(50,46,56); }
+.swatch-fila { display:flex; gap:10px; flex-wrap:wrap; margin:10px 0; }
+.swatch { display:flex; align-items:center; gap:8px; background:rgb(245,242,234); border:2px solid rgb(22,20,26); border-radius:20px; padding:6px 12px 6px 6px; font-size:.8rem; font-weight:600; }
+.swatch .cuadro { width:24px; height:24px; border-radius:50%; border:2px solid rgb(22,20,26); }
+
+/* MAPA DE ENCARGOS */
+.mapa-titulo { font-family:'Space Grotesk',sans-serif; font-weight:900; font-size:1.7rem; color:rgb(22,20,26); text-align:center; margin:8px 0 4px; text-transform:uppercase; }
+.mapa-sub { text-align:center; color:rgb(90,85,75); font-family:'Work Sans',sans-serif; font-weight:600; font-size:.95rem; margin-bottom:24px; text-transform:uppercase; letter-spacing:1.5px; }
+.barra-inf { max-width:680px; margin:0 auto 26px; }
+.barra-inf .pista { height:16px; border-radius:20px; background:rgb(255,255,255); border:3px solid rgb(22,20,26); overflow:hidden; }
+.barra-inf .relleno { height:100%; width:0%; background:repeating-linear-gradient(45deg, rgb(0,184,169), rgb(0,184,169) 10px, rgb(0,164,150) 10px, rgb(0,164,150) 20px); transition:width .6s ease; }
+.barra-inf .texto { font-family:'Courier Prime',monospace; font-weight:700; font-size:.8rem; color:rgb(50,46,56); text-align:right; margin-top:6px; }
+.grid-lugares { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:20px; }
+.lugar { background:rgb(255,255,255); border:3px solid rgb(22,20,26); border-radius:14px; padding:18px; cursor:pointer; transition:all .15s; position:relative; box-shadow:6px 6px 0 rgb(22,20,26); }
+.lugar:nth-child(4n+1) { box-shadow:6px 6px 0 rgb(255,107,91); }
+.lugar:nth-child(4n+2) { box-shadow:6px 6px 0 rgb(0,184,169); }
+.lugar:nth-child(4n+3) { box-shadow:6px 6px 0 rgb(255,201,60); }
+.lugar:nth-child(4n+4) { box-shadow:6px 6px 0 rgb(107,79,201); }
+.lugar:hover { transform:translate(3px,3px); box-shadow:3px 3px 0 rgb(22,20,26) !important; }
+.lugar .l-num { font-family:'Courier Prime',monospace; font-weight:700; font-size:.72rem; color:rgb(120,113,100); letter-spacing:1.5px; }
+.lugar h3 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.05rem; color:rgb(22,20,26); margin:6px 0 8px; }
+.lugar .l-icono { font-size:2.4rem; text-align:center; margin:10px 0; }
+.lugar .l-tema { font-size:.88rem; color:rgb(90,85,75); font-weight:500; }
+.lugar .l-estado { margin-top:12px; font-family:'Courier Prime',monospace; font-weight:700; font-size:.78rem; padding-top:10px; border-top:2px dashed rgb(210,205,195); }
+.lugar.completa .l-estado { color:rgb(0,140,120); }
+.lugar.disponible .l-estado { color:rgb(200,130,10); }
+.lugar.bloqueada { opacity:.4; cursor:not-allowed; filter:grayscale(.7); }
+.lugar.bloqueada:hover { transform:none; }
+.lugar.bloqueada .l-estado { color:rgb(200,60,50); }
+.lugar.insana { background:rgb(22,20,26); }
+.lugar.insana h3, .lugar.insana .l-tema, .lugar.insana .l-num { color:rgb(250,248,244); }
+.lugar.insana .l-estado { border-top-color:rgb(90,85,95); }
+
+/* NIVEL */
+.nivel-cab { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:16px; }
+.nivel-cab h2 { font-family:'Space Grotesk',sans-serif; font-weight:900; font-size:1.35rem; color:rgb(22,20,26); text-transform:uppercase; }
+.tag-xp { font-family:'Courier Prime',monospace; font-weight:700; font-size:.8rem; color:rgb(22,20,26); border:2px solid rgb(22,20,26); border-radius:20px; padding:4px 12px; background:rgb(255,201,60); }
+
+.teoria-caja { background:rgb(255,255,255); border:3px solid rgb(22,20,26); border-radius:14px; margin:16px 0; overflow:hidden; }
+.teoria-cab { display:flex; align-items:center; gap:10px; padding:14px 18px; cursor:pointer; background:rgb(250,248,244); }
+.teoria-cab:hover { background:rgb(255,244,220); }
+.teoria-cab .tit { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.88rem; color:rgb(22,20,26); flex:1; }
+.teoria-cab .flecha { color:rgb(120,113,100); transition:transform .3s; }
+.teoria-caja.abierta .teoria-cab .flecha { transform:rotate(180deg); }
+.teoria-cuerpo { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+.teoria-caja.abierta .teoria-cuerpo { max-height:1400px; }
+.teoria-inner { padding:6px 22px 20px; }
+.bloque-teoria p { line-height:1.7; margin:10px 0; color:rgb(50,46,56); }
+.bloque-teoria code.inl { font-family:'Courier Prime',monospace; background:rgb(255,244,220); border:2px solid rgb(22,20,26); border-radius:5px; padding:1px 7px; color:rgb(22,20,26); font-size:.87em; }
+.destacado { border:2px solid rgb(22,20,26); background:rgb(255,244,220); border-radius:10px; padding:14px 16px; margin:14px 0; font-size:.94rem; color:rgb(50,46,56); line-height:1.65; }
+.cod { font-family:'Courier Prime',monospace; font-size:.87rem; line-height:1.55; background:rgb(22,20,26); color:rgb(230,225,215); border-radius:10px; padding:14px 16px; margin:10px 0; overflow-x:auto; white-space:pre; border:3px solid rgb(22,20,26); }
+.tk-sel { color:rgb(255,201,60); font-weight:700; }
+.tk-prop { color:rgb(120,220,255); }
+.tk-val { color:rgb(160,230,140); }
+.tk-com { color:rgb(150,145,135); font-style:italic; }
+
+.lab { background:rgb(255,255,255); border:3px solid rgb(22,20,26); border-radius:16px; padding:20px 22px; margin:18px 0; box-shadow:7px 7px 0 rgb(22,20,26); }
+.lab h3 { font-family:'Space Grotesk',sans-serif; font-weight:900; font-size:1.02rem; color:rgb(22,20,26); margin-bottom:12px; text-transform:uppercase; }
+.lab .consigna { line-height:1.75; margin-bottom:14px; color:rgb(40,37,46); }
+.dos-columnas { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:800px) { .dos-columnas { grid-template-columns:1fr; } }
+.col-titulo { font-family:'Courier Prime',monospace; font-weight:700; font-size:.78rem; color:rgb(90,85,75); margin-bottom:6px; letter-spacing:1px; text-transform:uppercase; }
+
+.editor-marco { position:relative; border:3px solid rgb(22,20,26); border-radius:10px; overflow:hidden; background:rgb(22,20,26); }
+.editor-barra { display:flex; align-items:center; gap:8px; padding:8px 12px; background:rgb(35,32,40); border-bottom:2px solid rgb(60,56,66); }
+.editor-barra .punto { width:11px; height:11px; border-radius:50%; }
+.editor-barra .p1 { background:rgb(255,107,91); } .editor-barra .p2 { background:rgb(255,201,60); } .editor-barra .p3 { background:rgb(0,184,169); }
+.editor-barra .nom { font-family:'Courier Prime',monospace; font-size:.76rem; color:rgb(160,155,145); margin-left:6px; }
+.editor-zona { position:relative; min-height:260px; }
+.editor-zona pre, .editor-zona textarea { font-family:'Courier Prime',monospace; font-size:.92rem; line-height:1.55; padding:14px 16px; margin:0; tab-size:2; white-space:pre-wrap; word-wrap:break-word; min-height:260px; width:100%; border:none; }
+.editor-zona pre { position:absolute; inset:0; overflow:auto; pointer-events:none; color:rgb(230,225,215); }
+.editor-zona textarea { position:relative; display:block; background:transparent; color:transparent; caret-color:rgb(255,201,60); resize:vertical; outline:none; overflow:auto; }
+
+.preview-marco { border:3px solid rgb(22,20,26); border-radius:10px; overflow:hidden; background:white; }
+.preview-marco .pv-cab { font-family:'Courier Prime',monospace; font-weight:700; font-size:.75rem; color:rgb(230,225,215); background:rgb(22,20,26); padding:7px 12px; }
+.preview-marco iframe { width:100%; height:420px; border:none; background:white; display:block; }
+
+.fila-lab { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+.btn-verificar { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.9rem; background:rgb(0,184,169); color:rgb(22,20,26); border:3px solid rgb(22,20,26); border-radius:10px; padding:11px 22px; cursor:pointer; box-shadow:4px 4px 0 rgb(22,20,26); transition:all .1s; text-transform:uppercase; }
+.btn-verificar:hover { transform:translate(2px,2px); box-shadow:2px 2px 0 rgb(22,20,26); }
+.btn-preview { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.9rem; background:rgb(250,248,244); color:rgb(22,20,26); border:3px solid rgb(22,20,26); border-radius:10px; padding:10px 18px; cursor:pointer; box-shadow:3px 3px 0 rgb(22,20,26); transition:all .1s; }
+.btn-preview:hover { transform:translate(2px,2px); box-shadow:1px 1px 0 rgb(22,20,26); }
+.chequeos { margin-top:14px; display:none; }
+.chequeos.vis { display:block; }
+.chk { font-family:'Courier Prime',monospace; font-weight:700; font-size:.86rem; padding:8px 14px; border-radius:8px; margin:7px 0; border:2px solid rgb(22,20,26); line-height:1.5; }
+.chk.pasa { color:rgb(22,20,26); background:rgb(180,240,220); }
+.chk.falla { color:rgb(22,20,26); background:rgb(255,190,180); }
+.nav-nivel { display:flex; justify-content:space-between; gap:10px; margin-top:22px; flex-wrap:wrap; }
+
+/* MINI JUEGO OJO DEL DISEÑADOR */
+.ojo-caja { background:rgb(255,244,220); border:3px dashed rgb(22,20,26); border-radius:12px; padding:18px 20px; margin:18px 0; }
+.ojo-caja h4 { font-family:'Space Grotesk',sans-serif; font-weight:700; color:rgb(22,20,26); font-size:.95rem; margin-bottom:8px; text-transform:uppercase; }
+.ojo-fila { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:10px; }
+.ojo-swatch { width:72px; height:72px; border-radius:12px; border:3px solid rgb(22,20,26); }
+.ojo-input { font-family:'Courier Prime',monospace; font-weight:700; padding:10px 13px; border:2px solid rgb(22,20,26); border-radius:8px; font-size:.95rem; width:140px; }
+.ojo-resultado { font-family:'Courier Prime',monospace; font-weight:700; font-size:.85rem; color:rgb(50,46,56); }
+
+.velo { position:fixed; inset:0; background:rgba(22,20,26,0.82); z-index:500; display:none; align-items:center; justify-content:center; padding:20px; }
+.velo.vis { display:flex; animation:apar .3s ease; }
+.modal { background:rgb(255,255,255); border:4px solid rgb(22,20,26); border-radius:18px; max-width:560px; width:100%; padding:28px 30px; box-shadow:10px 10px 0 rgb(255,107,91); max-height:88vh; overflow-y:auto; }
+.modal h2 { font-family:'Space Grotesk',sans-serif; font-weight:900; font-size:1.3rem; color:rgb(22,20,26); margin-bottom:14px; text-transform:uppercase; }
+.modal p { line-height:1.7; margin:10px 0; color:rgb(50,46,56); }
+.modal.exito { box-shadow:10px 10px 0 rgb(0,184,169); }
+.puntaje-grande { font-family:'Space Grotesk',sans-serif; font-weight:900; font-size:2.4rem; text-align:center; color:rgb(22,20,26); background:rgb(255,201,60); border:3px solid rgb(22,20,26); border-radius:14px; padding:16px; margin:16px 0; }
+
+#btnPdf { position:fixed; bottom:22px; right:22px; z-index:300; width:60px; height:60px; border-radius:50%; background:rgb(255,107,91); border:3px solid rgb(22,20,26); font-size:1.5rem; cursor:pointer; box-shadow:5px 5px 0 rgb(22,20,26); transition:all .1s; display:none; }
+#btnPdf.vis { display:block; }
+#btnPdf:hover { transform:translate(2px,2px); box-shadow:3px 3px 0 rgb(22,20,26); }
+footer { text-align:center; font-family:'Courier Prime',monospace; font-weight:700; font-size:.8rem; color:rgb(120,113,100); padding:24px 10px 90px; text-transform:uppercase; letter-spacing:1px; }
+
+@media (max-width:640px) {
+  .pantalla { padding:20px 12px 90px; }
+  .tarjeta, .lab { padding:18px 16px; }
+  header { padding:12px 14px; }
+  .hud { margin-left:0; width:100%; margin-top:10px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-logo">
+    <div class="logo-img">🎨</div>
+    <div>
+      <div class="logo-text">Estudio Croma</div>
+      <div class="logo-sub">Identidad visual · CSS</div>
+    </div>
+  </div>
+  <div class="hud">
+    <div class="hud-chip">DISEÑADOR/A: <b id="hudNombre">—</b></div>
+    <div class="hud-chip">ENCARGOS: <b id="hudZonas">0/8</b></div>
+    <button class="btn-mini" id="btnMapa" type="button" style="display:none">🗂 Panel de Proyecto</button>
+  </div>
+</header>
+
+<!-- ============ PANTALLA 0: BRIEF INICIAL ============ -->
+<section class="pantalla activa" id="pantIntro">
+  <h1 class="titular">Bienvenido/a a <span>CROMA</span></h1>
+  <p class="bajada">Un cliente nuevo te está esperando</p>
+
+  <div class="tarjeta">
+    <h2>📩 Nuevo encargo</h2>
+    <div class="mail">De: Martín Otero — Dueño de Café Aroma
+Para: Estudio CROMA
+Asunto: Brief de marca — necesito que esto tenga alma
+
+Hola! Te paso todo lo que tengo en la cabeza para que arranques.
+
+Café Aroma no es una cadena. Es un local a la calle, de barrio, con mesas de madera y ventanales grandes. La idea es que la gente venga a quedarse un rato — no es un "café para llevar y listo".
+
+Lo que NO quiero: que parezca una cadena fría, ni algo "moderno" con paredes blancas y letras finitas. Tampoco algo recargado o infantil.
+
+Quiero que cuando alguien entre a la página del menú sienta lo mismo que si abriera la puerta del local: cálido, hogareño, con textura.
+
+Te dejo el HTML del menú ya armado. Vos ponele el alma con el CSS.
+
+Gracias totales,
+<span class="firma">Martín</span></div>
+
+    <div class="campo" style="margin:16px 0">
+      <label for="inNombre" style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:rgb(22,20,26); display:block; margin-bottom:8px; text-transform:uppercase; font-size:.85rem">Tu nombre (diseñador/a de CROMA)</label>
+      <input type="text" id="inNombre" maxlength="40" autocomplete="off" placeholder="Ej: Sofía Méndez" style="width:100%; font-family:'Courier Prime',monospace; padding:11px 14px; border:3px solid rgb(22,20,26); border-radius:8px; font-size:1rem">
+    </div>
+    <div class="fila-botones">
+      <button class="btn-primario" id="btnComenzar" type="button">🎨 Abrir el Panel de Proyecto</button>
+    </div>
+    <p style="font-family:'Courier Prime',monospace; font-weight:700; font-size:.85rem; color:rgb(255,107,91); min-height:20px" id="msjNombre"></p>
+  </div>
+</section>
+
+<!-- ============ PANTALLA MAPA ============ -->
+<section class="pantalla" id="pantMapa">
+  <h2 class="mapa-titulo">Proyecto: Café Aroma</h2>
+  <p class="mapa-sub">Elegí tu próximo encargo</p>
+  <div class="barra-inf">
+    <div class="pista"><div class="relleno" id="barraProg"></div></div>
+    <div class="texto" id="txtProg">Identidad visual: 0%</div>
+  </div>
+  <div id="briefPanel"></div>
+  <div class="grid-lugares" id="gridLugares"></div>
+</section>
+
+<!-- ============ PANTALLA NIVEL ============ -->
+<section class="pantalla" id="pantNivel">
+  <div class="nivel-cab">
+    <h2 id="nvTitulo">—</h2>
+    <span class="tag-xp" id="nvXp">+100 XP</span>
+  </div>
+  <div id="nvBrief"></div>
+  <div id="nvTeoria"></div>
+  <div class="lab">
+    <h3>🖌 Aplicá el estilo</h3>
+    <div class="consigna" id="nvConsigna"></div>
+    <div id="nvOjo"></div>
+    <div class="dos-columnas">
+      <div>
+        <div class="col-titulo">// Tu CSS //</div>
+        <div class="editor-marco">
+          <div class="editor-barra">
+            <span class="punto p1"></span><span class="punto p2"></span><span class="punto p3"></span>
+            <span class="nom" id="nvArchivo">estilos.css</span>
+          </div>
+          <div class="editor-zona">
+            <pre id="edHl" aria-hidden="true"></pre>
+            <textarea id="edTxt" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+          </div>
+        </div>
+        <div class="fila-lab">
+          <button class="btn-verificar" id="btnVerificar" type="button">🔍 Revisar Estilo</button>
+          <button class="btn-preview" id="btnReiniciar" type="button">↺ Reiniciar</button>
+          <button class="btn-preview" id="btnVerHTML" type="button">📄 Ver HTML dado</button>
+        </div>
+        <div class="chequeos" id="nvChequeos"></div>
+      </div>
+      <div>
+        <div class="col-titulo">// Vista previa del menú //</div>
+        <div class="preview-marco">
+          <div class="pv-cab">Así se ve el menú con tu CSS aplicado</div>
+          <iframe id="pvFrame" title="Vista previa del menú"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-nivel">
+    <button class="btn-secundario" id="btnVolverMapa" type="button">← Volver al Panel</button>
+    <button class="btn-primario" id="btnSigZona" type="button" style="display:none">Siguiente Encargo →</button>
+  </div>
+</section>
+
+<!-- ============ MODAL VER HTML DADO ============ -->
+<div class="velo" id="veloHTML">
+  <div class="modal">
+    <h2>📄 El HTML del menú</h2>
+    <pre class="cod" id="htmlDadoTexto" style="max-height:50vh; overflow:auto"></pre>
+    <div class="fila-botones">
+      <button class="btn-primario" id="btnCerrarHTML" type="button">Entendido</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL ÉXITO ============ -->
+<div class="velo" id="veloExito">
+  <div class="modal exito">
+    <h2>✔ ¡Al cliente le va a encantar!</h2>
+    <p id="msjExito"></p>
+    <div class="fila-botones">
+      <button class="btn-primario" id="btnExitoOk" type="button">Siguiente Encargo</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL LABORATORIO (GRAN APERTURA) ============ -->
+<div class="velo" id="veloInsano">
+  <div class="modal">
+    <h2>🎬 Llegó el día de la apertura</h2>
+    <div class="mail">Ya resolviste todos los encargos por separado. Ahora Martín te pide una última cosa:
+
+"¿Podés armarme el menú COMPLETO, todo junto, tal como lo imaginé? Abrimos mañana. Esta va sin instrucciones paso a paso — confío en tu criterio."
+
+Sin teoría esta vez. Solo el brief completo y el HTML entero del menú.</div>
+    <div class="fila-botones">
+      <button class="btn-primario" id="btnAceptarInsano" type="button">🎬 Ir a la Gran Apertura</button>
+      <button class="btn-secundario" id="btnEvacuar" type="button">Volver al panel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL FINAL ============ -->
+<div class="velo" id="veloFinal">
+  <div class="modal exito">
+    <h2>🏆 Café Aroma abrió sus puertas</h2>
+    <p>El menú quedó tal como Martín lo imaginó: cálido, hogareño, con personalidad de barrio. Quedás como <b>Diseñador/a Senior de CROMA</b>.</p>
+    <p>Tu puntaje final:</p>
+    <div class="puntaje-grande" id="puntajeFinal">—</div>
+    <div class="fila-botones">
+      <button class="btn-primario" id="btnFinalOk" type="button">Descargar Reporte 📄</button>
+      <button class="btn-secundario" id="btnFinalCerrar" type="button">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<button id="btnPdf" type="button" title="Descargar Reporte PDF">📄</button>
+
+<footer>Estudio Croma — con aroma a buen código</footer>
+<script>
+// ============================================================
+// ESTUDIO CROMA · MOTOR JAVASCRIPT
+// CSS: Selectores, Texto, Colores y Fondos · Ceibal
+// ============================================================
+
+// ============= EL HTML DEL MENÚ (YA DADO, NO SE TOCA) =============
+const MENU_HTML = `<div id="menu-cafe-aroma">
+  <header id="tituloLocal">
+    <h1>Café Aroma</h1>
+    <p class="slogan">Barrio, aroma y buenas charlas</p>
+  </header>
+
+  <nav class="categorias-nav">
+    <a href="#cafes">Cafés</a>
+    <a href="#panificados">Panificados</a>
+    <a href="#dulce">Dulce</a>
+    <a href="#salado">Salado</a>
+  </nav>
+
+  <section class="categoria" id="cafes">
+    <h2>Cafés</h2>
+    <article class="producto especialidad">
+      <h3>Cortado de la casa</h3>
+      <p class="descripcion">Espresso con un toque de leche, tueste medio.</p>
+      <span class="precio">$180</span>
+    </article>
+    <article class="producto">
+      <h3>Café con leche</h3>
+      <p class="descripcion">Clásico, suave, ideal para la mañana.</p>
+      <span class="precio">$160</span>
+    </article>
+    <article class="producto">
+      <h3>Capuchino</h3>
+      <p class="descripcion">Espuma cremosa con cacao espolvoreado.</p>
+      <span class="precio">$200</span>
+    </article>
+  </section>
+
+  <section class="categoria" id="panificados">
+    <h2>Panificados</h2>
+    <article class="producto">
+      <h3>Medialuna</h3>
+      <p class="descripcion">Manteca, recién horneada.</p>
+      <span class="precio">$90</span>
+    </article>
+    <article class="producto especialidad">
+      <h3>Chipá casero</h3>
+      <p class="descripcion">Receta de la abuela de Martín.</p>
+      <span class="precio">$120</span>
+    </article>
+  </section>
+
+  <section class="categoria" id="dulce">
+    <h2>Dulce</h2>
+    <article class="producto">
+      <h3>Torta de manzana</h3>
+      <p class="descripcion">Con canela y un toque de limón.</p>
+      <span class="precio">$210</span>
+    </article>
+    <article class="producto especialidad">
+      <h3>Alfajor de maicena</h3>
+      <p class="descripcion">Relleno de dulce de leche casero.</p>
+      <span class="precio">$150</span>
+    </article>
+  </section>
+
+  <section class="categoria" id="salado">
+    <h2>Salado</h2>
+    <article class="producto">
+      <h3>Tostado de jamón y queso</h3>
+      <p class="descripcion">Pan casero, jamón natural.</p>
+      <span class="precio">$230</span>
+    </article>
+    <article class="producto">
+      <h3>Tarta de verdura</h3>
+      <p class="descripcion">Porción generosa, de estación.</p>
+      <span class="precio">$220</span>
+    </article>
+  </section>
+
+  <div class="especial-del-dia">
+    <p>Especial del día: Cortado + Medialuna a $250</p>
+  </div>
+
+  <footer>
+    <p>Café Aroma — Hecho con cariño de barrio</p>
+  </footer>
+</div>`;
+
+// ============= EL BRIEF (FIJO, SIEMPRE CONSULTABLE) =============
+const BRIEF_HTML = `
+<h4>☕ La onda del local, en una frase</h4>
+<p><i>"Un café de barrio con mesas de madera, para quedarse charlando toda la tarde. Cálido, con textura, sin pretensiones."</i></p>
+
+<h4>🎯 Tres palabras que definen el tono</h4>
+<span class="chip-palabra">CÁLIDO</span><span class="chip-palabra">HOGAREÑO</span><span class="chip-palabra">SIN APUROS</span>
+
+<h4>🚫 Lo que Martín NO quiere</h4>
+<table class="tabla-evitar">
+<tr><td>Blanco puro (#FFFFFF)</td><td>Se siente clínico, de cadena corporativa</td></tr>
+<tr><td>Negro puro (#000000)</td><td>Muy duro, poco cálido</td></tr>
+<tr><td>Tipografías finas/condensadas</td><td>Difíciles de leer, sensación fría</td></tr>
+<tr><td>Colores neón o muy saturados</td><td>No es un local "trendy", es de barrio</td></tr>
+<tr><td>Todo centrado a la fuerza</td><td>Se siente rígido, no hogareño</td></tr>
+</table>
+
+<h4>🎨 Paleta de referencia</h4>
+<div class="swatch-fila">
+  <div class="swatch"><div class="cuadro" style="background:#6F4E37"></div> Marrón café</div>
+  <div class="swatch"><div class="cuadro" style="background:#F2E9DB"></div> Crema / hueso</div>
+  <div class="swatch"><div class="cuadro" style="background:#C48C3C"></div> Dorado mostaza</div>
+  <div class="swatch"><div class="cuadro" style="background:#7A8B5A"></div> Verde salvia (opcional)</div>
+</div>
+`;
+
+// ============= CSS INICIAL DEL EDITOR (VACÍO, CON GUÍA) =============
+const CSS_VACIO = `/* Escribí tu CSS acá. El HTML del menú ya está armado (botón "Ver HTML dado"). */\n`;
+
+// ============= DATOS DE LOS 8 ENCARGOS + LABORATORIO =============
+const NIVELES = [
+{
+    id: 'e1', num: 'ENCARGO 01', titulo: 'El Inventario I', icono: '📦',
+    tema: 'Selector de tipo y selector universal', xp: 100,
+    consigna: `Martín quiere que TODO el menú arranque parejo, sin sorpresas de espaciado del navegador. Y quiere que los nombres de los productos (los &lt;h3&gt;) tengan más peso visual que el texto normal, y que las descripciones (los &lt;p class="descripcion"&gt;) sean cómodas de leer, con buen aire entre línea y línea.\n\n<b>Hacé:</b>\n1. Usá el <b>selector universal</b> para aplicarle a TODOS los elementos una propiedad que evite que el padding y el borde sumen tamaño extra a las cajas — pensá en cómo se llama esa propiedad del "modelo de caja"\n2. Usá el <b>selector de tipo</b> <code class="inl">h3</code> para que el nombre del producto se vea más grueso que el texto normal\n3. Usá el <b>selector de tipo</b> <code class="inl">p</code> para que las descripciones tengan más espacio entre las líneas de texto`,
+    teoria: [
+        {h: '¿Qué es un selector?', p: 'Un selector le dice al navegador <b>a qué elementos</b> se le va a aplicar un estilo. Sin selector correcto, el CSS más lindo del mundo no llega a ningún lado.'},
+        {c: '/* Así se escribe un selector de tipo (afecta a TODOS los <li>) */\nli {\n  color: darkred;\n}\n\n/* Así se escribe el selector universal (afecta a TODO) */\n* {\n  margin: 0;\n}'},
+        {p: 'El selector universal <code class="inl">*</code> es el más amplio posible — hay que usarlo con cuidado, típicamente para "resets" básicos, no para diseño fino. Fijate que el ejemplo usa <code class="inl">li</code> y <code class="inl">margin</code> — vos vas a necesitar otras etiquetas y otras propiedades para este encargo.'},
+        {d: '🎨 Regla de Croma: el selector de tipo es ideal para "todo lo que sea de esta etiqueta se ve igual". La propiedad exacta que necesitás para cada caso la vas a encontrar revisando el material del curso.'}
+    ],
+    checks: [
+        { regex: '\\*\\s*\\{[^}]*box-sizing\\s*:\\s*border-box', msj: 'Selector universal (*) con box-sizing: border-box' },
+        { regex: '(^|\\})\\s*h3\\s*\\{[^}]*font-weight', msj: 'Selector de tipo h3 con font-weight' },
+        { regex: '(^|\\})\\s*p\\s*\\{[^}]*line-height', msj: 'Selector de tipo p con line-height' }
+    ],
+    exito: '✔ Base prolija lista. El menú ya no se ve como un documento sin formato.'
+},
+{
+    id: 'e2', num: 'ENCARGO 02', titulo: 'El Inventario II', icono: '📦',
+    tema: 'Selector de clase', xp: 100,
+    consigna: `Todos los productos (&lt;article class="producto"&gt;) necesitan el mismo "aire" alrededor, para que no se sientan amontonados unos con otros. Y los que son <b>especialidad de la casa</b> (llevan además la clase <code class="inl">especialidad</code>) tienen que notarse un poco distintos del resto — son la joya del menú.\n\n<b>Hacé:</b>\n1. Con el <b>selector de clase</b> <code class="inl">.producto</code>, dale a todos los productos un respiro interno y separación con el siguiente\n2. Con el <b>selector de clase</b> <code class="inl">.especialidad</code>, hacé que se noten distintos del resto (pensá en algún borde, línea o fondo que los distinga — pero evitá el blanco puro)`,
+    teoria: [
+        {h: '¿Qué es un selector de clase?', p: 'Se escribe con un punto: <code class="inl">.producto</code>. Afecta a <b>todos los elementos que tengan esa clase</b> en su atributo <code class="inl">class</code> — sin importar la etiqueta que sea.'},
+        {c: '/* Así se escribe un selector de clase */\n.etiqueta {\n  padding: 10px;\n}\n\n/* Un elemento puede combinar dos clases */\n.etiqueta.destacada {\n  border: 2px solid orange;\n}'},
+        {p: 'Un elemento puede tener <b>varias clases a la vez</b> — como <code class="inl">class="producto especialidad"</code>. Ambos selectores (<code class="inl">.producto</code> y <code class="inl">.especialidad</code>) le van a aplicar sus estilos por separado.'},
+        {d: '🎨 Regla de Croma: la clase es para "grupos que comparten un rol", no toda la etiqueta — perfecto para distinguir las especialidades del resto. Qué propiedad exacta usar para distinguirlas queda a tu criterio de diseño.'}
+    ],
+    checks: [
+        { regex: '\\.producto\\s*\\{[^}]*padding', msj: '.producto con padding' },
+        { regex: '\\.producto\\s*\\{[^}]*margin-bottom', msj: '.producto con margin-bottom' },
+        { regex: '\\.especialidad\\s*\\{[^}]*(border-left|background)', msj: '.especialidad con border-left o background que la distinga' },
+        { type: 'custom', msj: 'El fondo de .especialidad no debe ser blanco puro (#fff/#ffffff/white)',
+          fn: (css) => {
+            const m = css.match(/\.especialidad\s*\{[^}]*\}/);
+            if (!m) return true; // si no usó background, este check no aplica
+            const bloque = m[0];
+            if (!/background/.test(bloque)) return true;
+            return !/background(-color)?\s*:\s*(#fff(fff)?|white|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\))/i.test(bloque);
+          } }
+    ],
+    exito: '✔ Las especialidades de la casa ya se destacan. Se nota cuáles son las joyas del menú.'
+},
+{
+    id: 'e3', num: 'ENCARGO 03', titulo: 'El Inventario III', icono: '📦',
+    tema: 'Selector de ID y selectores de grupo', xp: 100,
+    consigna: `El título del local (&lt;header id="tituloLocal"&gt;) es único — no hay otro igual en toda la página, así que merece un tratamiento propio y distinto al resto. Y para no repetir el mismo bloque de CSS dos veces, unificá algo que los títulos de categoría (&lt;h2&gt;) y los de producto (&lt;h3&gt;) puedan compartir.\n\n<b>Hacé:</b>\n1. Con el <b>selector de ID</b> <code class="inl">#tituloLocal</code>, dale un estilo propio que lo distinga del resto de los títulos\n2. Con un <b>selector de grupo</b> que incluya a <code class="inl">h2</code> y <code class="inl">h3</code> a la vez, definí algo que ambos vayan a compartir (por ejemplo, algo relacionado a la tipografía)`,
+    teoria: [
+        {h: '¿Qué son el selector de ID y el de grupo?', p: 'El <b>ID</b> se escribe con numeral: <code class="inl">#tituloLocal</code>. A diferencia de la clase, <b>un ID debe ser único</b> en toda la página — es para "ese elemento particular y ningún otro".'},
+        {c: '/* Así se escribe un selector de ID */\n#unico {\n  text-align: center;\n}\n\n/* Así se escribe un selector de grupo */\nspan, li {\n  color: teal;\n}'},
+        {p: 'El <b>selector de grupo</b> usa una coma para decir "aplicá esto a un selector Y también al otro", ahorrando escribir el mismo bloque dos veces.'},
+        {d: '🎨 Regla de Croma: ID para lo único e irrepetible (el logo del local). Grupo para "estas etiquetas distintas comparten algo en común" (la tipografía de los títulos, en este caso).'}
+    ],
+    checks: [
+        { regex: '#tituloLocal\\s*\\{[^}]+\\}', msj: '#tituloLocal con al menos una propiedad' },
+        { regex: 'h2\\s*,\\s*h3\\s*\\{[^}]*font-family|h3\\s*,\\s*h2\\s*\\{[^}]*font-family', msj: 'Selector de grupo h2, h3 con font-family compartida' }
+    ],
+    exito: '✔ El logo del local ya tiene identidad propia, y los títulos hablan el mismo idioma tipográfico.'
+},
+{
+    id: 'e4', num: 'ENCARGO 04', titulo: 'La Voz de la Marca I', icono: '✍️',
+    tema: 'Color de texto y familia de fuente', xp: 100,
+    consigna: `Ahora entra la personalidad de Café Aroma en el texto. Martín fue claro: nada de negro puro (se siente frío) y nada de fuentes tecnológicas o condensadas.\n\n<b>Hacé:</b>\n1. Definí el <code class="inl">color</code> de texto general del menú (por ejemplo en <code class="inl">body</code>) usando un tono oscuro y cálido — pensá en un marrón profundo, <b>nunca negro puro</b>\n2. Definí una <code class="inl">font-family</code> con personalidad cálida para los títulos (<code class="inl">h1</code>, <code class="inl">h2</code>, <code class="inl">h3</code>) — algo con carácter, no una tipografía fría de sistema`,
+    teoria: [
+        {h: '¿Qué son color y font-family?', p: '<code class="inl">color</code> define el color del texto (no del fondo). <code class="inl">font-family</code> define qué tipografía se usa — podés poner varias separadas por coma, como plan B por si la primera no está disponible.'},
+        {c: '/* Así se escriben color y font-family (valores solo de ejemplo) */\np {\n  color: darkslategray;\n  font-family: Verdana, sans-serif;\n}'},
+        {p: 'El negro puro (<code class="inl">#000000</code>) contrasta muy fuerte contra fondos claros — se siente "duro". Un tono oscuro con temperatura cumple la misma función de legibilidad, pero con calidez.'},
+        {d: '🎨 Regla de Croma: en marcas cálidas, el texto casi nunca es negro puro. Es un oscuro con temperatura — marrón, café, carbón tibio. El tono exacto y la tipografía quedan a tu criterio.'}
+    ],
+    checks: [
+        { regex: '(body|h1|h2|h3|p)\\s*\\{[^}]*color\\s*:', msj: 'Se define color de texto en algún selector' },
+        { type: 'custom', msj: 'El color de texto no debe ser negro puro (#000/#000000/black)',
+          fn: (css) => !/color\s*:\s*(#000(000)?|black|rgb\(\s*0\s*,\s*0\s*,\s*0\s*\))\s*;/i.test(css) },
+        { regex: '(h1|h2|h3)[^{]*\\{[^}]*font-family\\s*:', msj: 'font-family definida para los títulos' }
+    ],
+    exito: '✔ El menú ya "habla" con la voz cálida de Café Aroma, no con la voz fría de un documento.'
+},
+{
+    id: 'e5', num: 'ENCARGO 05', titulo: 'La Voz de la Marca II', icono: '✍️',
+    tema: 'Tamaño y grosor de fuente', xp: 100,
+    consigna: `En la carta tiene que quedar clarísimo qué es el nombre del producto y qué es el precio — son los dos datos que el cliente busca primero con la mirada.\n\n<b>Hacé:</b>\n1. Con <code class="inl">h3</code>, hacé que el nombre del producto se vea más grande que el texto normal\n2. Con <code class="inl">.precio</code>, hacé que el precio se vea más grueso para que se destaque a simple vista`,
+    teoria: [
+        {h: '¿Qué son font-size y font-weight?', p: '<code class="inl">font-size</code> controla qué tan grande se ve el texto. <code class="inl">font-weight</code> controla el grosor del trazo — <code class="inl">normal</code>, <code class="inl">bold</code>, o valores numéricos como <code class="inl">700</code>.'},
+        {c: '/* Así se escriben font-size y font-weight (valores solo de ejemplo) */\nspan {\n  font-size: 1.4rem;\n  font-weight: 900;\n}'},
+        {p: 'La <b>jerarquía visual</b> (qué se lee primero) se construye combinando tamaño y grosor — no hace falta gritar con mayúsculas ni colores llamativos.'},
+        {d: '🎨 Regla de Croma: el nombre del producto y el precio son los dos elementos que "más pesan" visualmente en una carta — todo lo demás es de apoyo. Cuánto más grande o grueso, es una decisión tuya.'}
+    ],
+    checks: [
+        { regex: '(^|\\})\\s*h3\\s*\\{[^}]*font-size', msj: 'h3 con font-size definido' },
+        { regex: '\\.precio\\s*\\{[^}]*font-weight\\s*:\\s*(bold|[6-9]00)', msj: '.precio con font-weight bold (o 600-900)' }
+    ],
+    exito: '✔ Ahora el ojo va directo al nombre del plato y al precio, tal como tiene que ser en una carta.'
+},
+{
+    id: 'e6', num: 'ENCARGO 06', titulo: 'La Voz de la Marca III', icono: '✍️',
+    tema: 'Alineación y decoración de texto', xp: 100,
+    consigna: `El slogan del local ("Barrio, aroma y buenas charlas") tiene que sentirse escrito a mano, no tipeado en una planilla. Y el menú de navegación (los links de categorías) no necesita el subrayado por defecto que traen los links.\n\n<b>Hacé:</b>\n1. Con <code class="inl">.slogan</code>, dale un tratamiento de texto que lo haga sentir más personal (pensá en cómo se ve un texto inclinado, o con alguna decoración sutil)\n2. Con <code class="inl">.categorias-nav a</code>, sacale la decoración por defecto que traen los links`,
+    teoria: [
+        {h: '¿Qué son text-align y text-decoration?', p: '<code class="inl">text-align</code> controla si el texto va a la izquierda, centro o derecha. <code class="inl">text-decoration</code> agrega o saca líneas (subrayado, tachado). <code class="inl">font-style</code> puede inclinar el texto.'},
+        {c: '/* Así se escriben (valores solo de ejemplo) */\nblockquote {\n  text-align: right;\n  text-decoration: underline;\n}'},
+        {p: 'El brief de Martín pide <b>evitar centrar todo por sistema</b> — el centrado se reserva para momentos puntuales (como el título del local), no como regla general.'},
+        {d: '🎨 Regla de Croma: la decoración de texto se usa con intención — un detalle sutil dice más que forzar mayúsculas o subrayados por todos lados.'}
+    ],
+    checks: [
+        { regex: '\\.slogan\\s*\\{[^}]*(font-style\\s*:\\s*italic|text-decoration)', msj: '.slogan con font-style italic o text-decoration' },
+        { regex: '\\.categorias-nav\\s+a\\s*\\{[^}]*text-decoration\\s*:\\s*none', msj: '.categorias-nav a con text-decoration: none' }
+    ],
+    exito: '✔ El slogan ya tiene calidez de puño y letra, y el menú de navegación se ve prolijo.'
+},
+{
+    id: 'e7', num: 'ENCARGO 07', titulo: 'La Paleta Oficial I', icono: '🎨',
+    tema: 'Color de fondo, HEX y RGB', xp: 100,
+    consigna: `Llegó el momento de definir los colores reales de la marca. Nada de blanco puro de fondo — Martín quiere sentir calidez apenas entre a la página.\n\n<b>Hacé:</b>\n1. Con <code class="inl">body</code>, definí un color de fondo cálido tipo crema (no blanco puro), escrito en HEX o en RGB\n2. Con <code class="inl">.especialidad</code>, definí un color de fondo cálido tipo dorado/mostaza, escrito en HEX o en RGB`,
+    teoria: [
+        {h: '¿Qué son HEX y RGB?', p: 'Ambos son formas de escribir un color exacto. <b>HEX</b> usa 6 caracteres (0-9, A-F): <code class="inl">#F2E9DB</code>. <b>RGB</b> usa 3 números de 0 a 255, uno por cada color de luz (rojo, verde, azul): <code class="inl">rgb(242, 233, 219)</code>. Son el mismo color, escrito de dos formas distintas.'},
+        {c: '/* Así se escriben (colores de ejemplo, no son los de Café Aroma) */\ndiv {\n  background-color: #4C6A5D; /* HEX */\n}\n\nspan {\n  background-color: rgb(90, 60, 130); /* RGB */\n}'},
+        {p: 'Fondo blanco puro es <code class="inl">#FFFFFF</code> o <code class="inl">rgb(255,255,255)</code> — evitalo acá, es justo lo que el brief pide que no uses.'},
+        {d: '🎨 Regla de Croma: HEX y RGB son intercambiables — usá el que te resulte más cómodo. El tono exacto de crema y de dorado queda a tu criterio de diseño.'}
+    ],
+    ojo: true,
+    checks: [
+        { type: 'custom', msj: 'body con background-color definido, distinto de blanco puro',
+          fn: (css) => {
+            const m = css.match(/body\s*\{[^}]*\}/);
+            if (!m) return false;
+            const bloque = m[0];
+            if (!/background(-color)?\s*:/.test(bloque)) return false;
+            return !/background(-color)?\s*:\s*(#fff(fff)?|white|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\))/i.test(bloque);
+          } },
+        { regex: '\\.especialidad\\s*\\{[^}]*background(-color)?\\s*:\\s*(#|rgb)', msj: '.especialidad con background-color en HEX o RGB' }
+    ],
+    exito: '✔ La paleta oficial de Café Aroma ya está sobre la mesa — cálida, tal como se pidió.'
+},
+{
+    id: 'e8', num: 'ENCARGO 08', titulo: 'La Paleta Oficial II', icono: '🎨',
+    tema: 'Transparencia con RGBA', xp: 100,
+    consigna: `El cartelito de "Especial del día" (&lt;div class="especial-del-dia"&gt;) tiene que verse como una etiqueta pegada en la vidriera — con un efecto de vidrio esmerilado, no un bloque de color sólido y opaco.\n\n<b>Hacé:</b>\nCon <code class="inl">.especial-del-dia</code>, definí un fondo usando <code class="inl">rgba()</code> donde el cuarto valor (la opacidad) sea <b>menor a 1</b>, para lograr ese efecto translúcido`,
+    teoria: [
+        {h: '¿Qué es RGBA?', p: 'Es RGB con un cuarto valor extra: la <b>opacidad (alfa)</b>, entre 0 (invisible) y 1 (sólido).'},
+        {c: '/* Así se escribe (valor de ejemplo) */\n.overlay {\n  background-color: rgba(20, 20, 20, 0.4);\n}'},
+        {p: 'Cuanto más cerca de 0 el alfa, más transparente. Cuanto más cerca de 1, más sólido. El efecto "vidrio esmerilado" suele lograrse en un punto intermedio.'},
+        {d: '🎨 Regla de Croma: RGBA es HEX/RGB con un plus — la misma paleta, pero con la posibilidad de dejar ver lo que hay detrás. El color y el nivel exacto de transparencia quedan a tu criterio.'}
+    ],
+    checks: [
+        { type: 'custom', msj: '.especial-del-dia con background usando rgba() con alfa entre 0 y 1 (sin llegar a 1)',
+          fn: (css) => {
+            const m = css.match(/\.especial-del-dia\s*\{[^}]*\}/);
+            if (!m) return false;
+            const rgba = m[0].match(/rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*([\d.]+)\s*\)/);
+            if (!rgba) return false;
+            const alfa = parseFloat(rgba[1]);
+            return alfa > 0 && alfa < 1;
+          } }
+    ],
+    exito: '✔ El especial del día ya tiene ese efecto de vidrio esmerilado, como una etiqueta real en la vidriera.'
+},
+{
+    id: 'lab', num: '🎬 GRAN APERTURA', titulo: 'El Menú Completo', icono: '🎬', xp: 350, insano: true,
+    consigna: `Escribí el CSS completo del menú de Café Aroma, integrando TODO lo que resolviste en los 8 encargos anteriores:\n\n1. Selector universal con la propiedad de "modelo de caja" del Encargo 01\n2. <code class="inl">.producto</code> y <code class="inl">.especialidad</code> con estilos propios\n3. <code class="inl">#tituloLocal</code> con estilo único + selector de grupo para títulos\n4. Color de texto cálido (sin negro puro) + tipografía con personalidad\n5. Tamaños y grosores que jerarquicen nombre y precio\n6. Alineación y decoración con criterio (sin centrar todo)\n7. Fondo general cálido (sin blanco puro) + paleta en HEX o RGB\n8. Transparencia RGBA en el especial del día\n\nSin teoría esta vez — el brief completo sigue disponible para consultar.`,
+    checks: [
+        { regex: '\\*\\s*\\{[^}]*box-sizing', msj: 'Selector universal con box-sizing' },
+        { regex: '\\.producto\\s*\\{[^}]+\\}', msj: '.producto con estilos' },
+        { regex: '\\.especialidad\\s*\\{[^}]+\\}', msj: '.especialidad con estilos' },
+        { regex: '#tituloLocal\\s*\\{[^}]+\\}', msj: '#tituloLocal con estilos' },
+        { regex: 'h2\\s*,\\s*h3\\s*\\{|h3\\s*,\\s*h2\\s*\\{', msj: 'Selector de grupo para títulos' },
+        { type: 'custom', msj: 'Color de texto definido, sin negro puro',
+          fn: (css) => /color\s*:/.test(css) && !/color\s*:\s*(#000(000)?|black|rgb\(\s*0\s*,\s*0\s*,\s*0\s*\))\s*;/i.test(css) },
+        { regex: '\\.precio\\s*\\{[^}]*font-weight', msj: '.precio con font-weight' },
+        { type: 'custom', msj: 'Fondo general sin blanco puro',
+          fn: (css) => {
+            const m = css.match(/body\s*\{[^}]*\}/);
+            if (!m || !/background/.test(m[0])) return false;
+            return !/background(-color)?\s*:\s*(#fff(fff)?|white|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\))/i.test(m[0]);
+          } },
+        { type: 'custom', msj: '.especial-del-dia con RGBA y transparencia real (alfa entre 0 y 1)',
+          fn: (css) => {
+            const m = css.match(/\.especial-del-dia\s*\{[^}]*\}/);
+            if (!m) return false;
+            const rgba = m[0].match(/rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*([\d.]+)\s*\)/);
+            if (!rgba) return false;
+            const alfa = parseFloat(rgba[1]);
+            return alfa > 0 && alfa < 1;
+          } }
+    ],
+    exito: '✔ CAFÉ AROMA ABRIÓ SUS PUERTAS. El menú completo tiene la voz de la marca de punta a punta.'
+}
+];
+
+// ============= ESTADO GLOBAL =============
+let estadoJuego = {
+    nombre: '',
+    zonaActual: null,
+    mascara: 0,
+    codigos: {}   // CSS final guardado por encargo: { e1: "...", e2: "...", ... }
+};
+
+// ============= INICIALIZACIÓN =============
+document.addEventListener('DOMContentLoaded', () => {
+    mostrarPantalla('pantIntro');
+    setupEventos();
+});
+
+function setupEventos() {
+    document.getElementById('btnComenzar').addEventListener('click', iniciarJuego);
+    document.getElementById('btnVerificar').addEventListener('click', verificarZona);
+    document.getElementById('btnReiniciar').addEventListener('click', reiniciarEditor);
+    document.getElementById('btnVerHTML').addEventListener('click', mostrarHTMLDado);
+    document.getElementById('btnCerrarHTML').addEventListener('click', () => document.getElementById('veloHTML').classList.remove('vis'));
+    document.getElementById('btnVolverMapa').addEventListener('click', volverMapa);
+    document.getElementById('btnSigZona').addEventListener('click', siguienteZona);
+    document.getElementById('btnExitoOk').addEventListener('click', cerrarVeloExito);
+    document.getElementById('btnAceptarInsano').addEventListener('click', irAlLaboratorio);
+    document.getElementById('btnEvacuar').addEventListener('click', volverMapa);
+    document.getElementById('btnFinalOk').addEventListener('click', descargarPDF);
+    document.getElementById('btnFinalCerrar').addEventListener('click', () => document.getElementById('veloFinal').classList.remove('vis'));
+    document.getElementById('btnPdf').addEventListener('click', descargarPDF);
+    document.getElementById('btnMapa').addEventListener('click', volverMapa);
+
+    const edTxt = document.getElementById('edTxt');
+    edTxt.addEventListener('input', () => { tokenizarEnVivo(); actualizarPreview(); });
+    edTxt.addEventListener('scroll', () => {
+        document.getElementById('edHl').scrollTop = edTxt.scrollTop;
+        document.getElementById('edHl').scrollLeft = edTxt.scrollLeft;
+    });
+    edTxt.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            const start = edTxt.selectionStart, end = edTxt.selectionEnd;
+            edTxt.value = edTxt.value.substring(0, start) + '  ' + edTxt.value.substring(end);
+            edTxt.selectionStart = edTxt.selectionEnd = start + 2;
+            tokenizarEnVivo(); actualizarPreview();
+        }
+    });
+}
+
+// ============= PANTALLAS =============
+function mostrarPantalla(id) {
+    document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
+    document.getElementById(id).classList.add('activa');
+}
+
+function iniciarJuego() {
+    const nombre = document.getElementById('inNombre').value.trim();
+    const msjErr = document.getElementById('msjNombre');
+    if (!nombre || nombre.length < 2) {
+        msjErr.textContent = '⚠ Ingresá tu nombre (mínimo 2 caracteres)';
+        return;
+    }
+    estadoJuego.nombre = nombre;
+    mostrarMapa();
+}
+
+function mostrarMapa() {
+    estadoJuego.zonaActual = null;
+    mostrarPantalla('pantMapa');
+    document.getElementById('hudNombre').textContent = estadoJuego.nombre;
+    document.getElementById('btnMapa').style.display = 'inline-block';
+    document.getElementById('btnPdf').classList.add('vis');
+    document.getElementById('briefPanel').innerHTML = crearBrief('brief-mapa');
+    activarAcordeonBrief();
+    generarGridLugares();
+}
+
+function crearBrief(idPrefijo) {
+    return `<div class="brief-caja" id="${idPrefijo}">
+        <div class="brief-cab"><span>📋</span><span class="tit">BRIEF DE MARCA — CAFÉ AROMA (consultar cuando quieras)</span><span class="flecha">▼</span></div>
+        <div class="brief-cuerpo"><div class="brief-inner">${BRIEF_HTML}</div></div>
+    </div>`;
+}
+
+function activarAcordeonBrief() {
+    document.querySelectorAll('.brief-cab').forEach(cab => {
+        cab.onclick = () => cab.parentElement.classList.toggle('abierta');
+    });
+}
+
+function generarGridLugares() {
+    const grid = document.getElementById('gridLugares');
+    grid.innerHTML = '';
+    NIVELES.forEach((nv, idx) => {
+        const completa = (estadoJuego.mascara & (1 << idx)) !== 0;
+        const anterior = idx === 0 ? true : (estadoJuego.mascara & (1 << (idx - 1))) !== 0;
+        const disponible = completa || anterior;
+
+        const div = document.createElement('div');
+        div.className = 'lugar ' + (nv.insano ? 'insana' : '') + ' ' + (completa ? 'completa' : disponible ? 'disponible' : 'bloqueada');
+        div.innerHTML = `
+            <div class="l-num">${nv.num}</div>
+            <h3>${nv.titulo}</h3>
+            <div class="l-icono">${nv.icono}</div>
+            <p class="l-tema">${nv.tema}</p>
+            <div class="l-estado">${completa ? '✔ ENTREGADO' : disponible ? '⚠ DISPONIBLE' : '🔒 SIN DESBLOQUEAR'}</div>
+        `;
+        if (disponible) div.addEventListener('click', () => abrirZona(idx));
+        grid.appendChild(div);
+    });
+    actualizarBarra();
+}
+
+function abrirZona(idx) {
+    estadoJuego.zonaActual = idx;
+    const nv = NIVELES[idx];
+
+    document.getElementById('nvTitulo').textContent = `${nv.icono} ${nv.num} · ${nv.titulo}`;
+    document.getElementById('nvXp').textContent = `+${nv.xp} XP`;
+    document.getElementById('nvConsigna').innerHTML = nv.consigna;
+    document.getElementById('nvBrief').innerHTML = crearBrief('brief-nivel');
+
+    let teoriasHTML = '';
+    if (nv.teoria) {
+        teoriasHTML += '<div style="margin-bottom:14px">';
+        nv.teoria.forEach(t => {
+            if (t.h) teoriasHTML += `<div class="teoria-caja"><div class="teoria-cab"><span class="tit">${t.h}</span><span class="flecha">▼</span></div><div class="teoria-cuerpo"><div class="teoria-inner"><div class="bloque-teoria"><p>${t.p || ''}</p></div></div></div></div>`;
+            else if (t.p) teoriasHTML += `<p style="line-height:1.7; margin:10px 0; color:rgb(75,58,42)">${t.p}</p>`;
+            else if (t.c) teoriasHTML += `<pre class="cod">${tokenizarCSS(t.c)}</pre>`;
+            else if (t.d) teoriasHTML += `<div class="destacado">${t.d}</div>`;
+        });
+        teoriasHTML += '</div>';
+    }
+    document.getElementById('nvTeoria').innerHTML = teoriasHTML;
+
+    // Mini-juego "El Ojo del Diseñador" (solo en e7)
+    document.getElementById('nvOjo').innerHTML = nv.ojo ? crearMiniJuegoOjo() : '';
+    if (nv.ojo) setupMiniJuegoOjo();
+
+    document.querySelectorAll('.teoria-cab, .brief-cab').forEach(cab => {
+        cab.onclick = () => cab.parentElement.classList.toggle('abierta');
+    });
+
+    document.getElementById('edTxt').value = estadoJuego.codigos[nv.id] || CSS_VACIO;
+    document.getElementById('nvChequeos').innerHTML = '';
+    document.getElementById('nvChequeos').classList.remove('vis');
+    document.getElementById('btnSigZona').style.display = 'none';
+
+    tokenizarEnVivo();
+    actualizarPreview();
+    mostrarPantalla('pantNivel');
+}
+
+// ============= MINI-JUEGO: EL OJO DEL DISEÑADOR =============
+function crearMiniJuegoOjo() {
+    return `<div class="ojo-caja">
+        <h4>👁 El Ojo del Diseñador (opcional, no afecta la verificación)</h4>
+        <p style="font-size:.88rem; color:rgb(110,85,55)">Martín te mandó una foto de la pared de ladrillo del local. ¿Qué tan cerca podés estimar el color exacto en HEX?</p>
+        <div class="ojo-fila">
+            <div class="ojo-swatch" id="ojoReferencia" style="background:#6F4E37"></div>
+            <input type="text" class="ojo-input" id="ojoInput" placeholder="#RRGGBB" maxlength="7">
+            <button class="btn-preview" id="ojoBtn" type="button">Comparar</button>
+            <span class="ojo-resultado" id="ojoResultado"></span>
+        </div>
+    </div>`;
+}
+
+function setupMiniJuegoOjo() {
+    const referencia = { r: 0x6F, g: 0x4E, b: 0x37 };
+    document.getElementById('ojoBtn').onclick = () => {
+        const val = document.getElementById('ojoInput').value.trim();
+        const m = val.match(/^#?([0-9a-fA-F]{6})$/);
+        const resultado = document.getElementById('ojoResultado');
+        if (!m) { resultado.textContent = '⚠ Escribí un HEX válido, ej: #6F4E37'; return; }
+        const hex = m[1];
+        const r = parseInt(hex.substr(0,2),16), g = parseInt(hex.substr(2,2),16), b = parseInt(hex.substr(4,2),16);
+        const distancia = Math.sqrt((r-referencia.r)**2 + (g-referencia.g)**2 + (b-referencia.b)**2);
+        let veredicto;
+        if (distancia < 15) veredicto = '🎯 ¡Ojo clínico! Casi exacto.';
+        else if (distancia < 40) veredicto = '👍 Muy cerca, buen ojo.';
+        else if (distancia < 80) veredicto = '🤔 Anda por el barrio del color, pero no es exacto.';
+        else veredicto = '😅 Lejos — probá de nuevo mirando bien el tono.';
+        resultado.textContent = veredicto + ' (distancia: ' + Math.round(distancia) + ')';
+    };
+}
+
+// ============= TOKENIZADOR CSS =============
+function tokenizarEnVivo() {
+    document.getElementById('edHl').innerHTML = tokenizarCSS(document.getElementById('edTxt').value);
+}
+
+function tokenizarCSS(codigo) {
+    let html = escaparHTML(codigo);
+    // Comentarios
+    html = html.replace(/\/\*[\s\S]*?\*\//g, (m) => `<span class="tk-com">${m}</span>`);
+    // Selectores (antes de la llave)
+    html = html.replace(/([^{}]+)\{/g, (m, sel) => {
+        if (/<span class="tk-com">/.test(sel)) return m;
+        return `<span class="tk-sel">${sel}</span>{`;
+    });
+    // Propiedad: valor;
+    html = html.replace(/([\w-]+)(\s*:\s*)([^;{}]+)(;)/g, (m, prop, dosp, val, punto) => {
+        return `<span class="tk-prop">${prop}</span>${dosp}<span class="tk-val">${val}</span>${punto}`;
+    });
+    return html;
+}
+
+function escaparHTML(texto) {
+    return texto.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ============= VISTA PREVIA (HTML dado + CSS del estudiante) =============
+function actualizarPreview() {
+    const css = document.getElementById('edTxt').value;
+    const iframe = document.getElementById('pvFrame');
+    const html = `<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<style>
+body { font-family: Arial, sans-serif; margin:0; padding:16px; }
+.categoria { margin-bottom: 18px; }
+.categorias-nav a { margin-right: 12px; }
+</style>
+<style>${css}</style>
+</head><body>${MENU_HTML}</body></html>`;
+    iframe.srcdoc = html;
+}
+
+function mostrarHTMLDado() {
+    document.getElementById('htmlDadoTexto').textContent = MENU_HTML;
+    document.getElementById('veloHTML').classList.add('vis');
+}
+
+// ============= VERIFICACIÓN =============
+function verificarZona() {
+    if (estadoJuego.zonaActual === null) return;
+    const nv = NIVELES[estadoJuego.zonaActual];
+    const css = document.getElementById('edTxt').value;
+    const chequeos = [];
+    let todoOk = true;
+
+    nv.checks.forEach(chk => {
+        let pasa;
+        if (chk.type === 'custom') {
+            pasa = chk.fn(css);
+        } else {
+            const regex = new RegExp(chk.regex, 'i');
+            pasa = regex.test(css);
+        }
+        if (!pasa) todoOk = false;
+        chequeos.push({ pasa, msj: chk.msj });
+    });
+
+    document.getElementById('nvChequeos').innerHTML = chequeos.map(c =>
+        `<div class="chk ${c.pasa ? 'pasa' : 'falla'}">${c.pasa ? '✔' : '✗'} ${c.msj}</div>`
+    ).join('');
+    document.getElementById('nvChequeos').classList.add('vis');
+
+    if (todoOk) zonaPasada();
+}
+
+function zonaPasada() {
+    const idx = estadoJuego.zonaActual;
+    const nv = NIVELES[idx];
+    estadoJuego.mascara |= (1 << idx);
+    estadoJuego.codigos[nv.id] = document.getElementById('edTxt').value;
+
+    if (idx === 7) {
+        document.getElementById('veloInsano').classList.add('vis');
+    } else if (idx === 8) {
+        const puntaje = calcularPuntaje();
+        document.getElementById('puntajeFinal').textContent = puntaje.toFixed(1) + ' / 10';
+        document.getElementById('veloFinal').classList.add('vis');
+    } else {
+        const puntajeActual = calcularPuntaje();
+        document.getElementById('msjExito').innerHTML = nv.exito + '<br><br><b>Puntaje actual: ' + puntajeActual.toFixed(1) + ' / 10</b>';
+        document.getElementById('veloExito').classList.add('vis');
+    }
+}
+
+function cerrarVeloExito() {
+    document.getElementById('veloExito').classList.remove('vis');
+    generarGridLugares();
+    mostrarPantalla('pantMapa');
+}
+
+function siguienteZona() { cerrarVeloExito(); }
+
+function irAlLaboratorio() {
+    document.getElementById('veloInsano').classList.remove('vis');
+    abrirZona(8);
+}
+
+function reiniciarEditor() {
+    document.getElementById('edTxt').value = CSS_VACIO;
+    document.getElementById('nvChequeos').innerHTML = '';
+    document.getElementById('nvChequeos').classList.remove('vis');
+    tokenizarEnVivo();
+    actualizarPreview();
+}
+
+function volverMapa() { mostrarMapa(); }
+
+function actualizarBarra() {
+    const completadas = NIVELES.slice(0, 8).filter((_, i) => (estadoJuego.mascara & (1 << i)) !== 0).length;
+    const porcentaje = (completadas / 8) * 100;
+    document.getElementById('barraProg').style.width = porcentaje + '%';
+    document.getElementById('txtProg').textContent = `Identidad visual: ${Math.round(porcentaje)}%`;
+    document.getElementById('hudZonas').textContent = `${completadas}/8`;
+}
+
+// ============= PUNTAJE SOBRE 10 =============
+// 8 encargos x 1 punto c/u (hasta 8) + Gran Apertura = 2 puntos extra (tope 10)
+function calcularPuntaje() {
+    const completados = NIVELES.slice(0, 8).filter((_, i) => (estadoJuego.mascara & (1 << i)) !== 0).length;
+    const lab = (estadoJuego.mascara & 256) !== 0;
+    let puntaje = completados * 1.0;
+    if (lab) puntaje += 2.0;
+    return Math.min(10, Math.round(puntaje * 10) / 10);
+}
+
+// ============= PDF: DISEÑADOR/A + CSS REALIZADO + PUNTAJE =============
+function descargarPDF() {
+    if (!window.jspdf || !window.jspdf.jsPDF) { alert('Error: motor PDF no cargó'); return; }
+
+    const doc = new window.jspdf.jsPDF();
+    const W = 210, H = 297;
+    const margenInf = 18;
+    let y = 10;
+
+    function asegurarEspacio(alt) { if (y + alt > H - margenInf) { doc.addPage(); y = 18; } }
+
+    doc.setFillColor(59, 44, 31);
+    doc.rect(0, 0, W, 36, 'F');
+    doc.setDrawColor(196, 140, 60);
+    doc.setLineWidth(1);
+    doc.line(0, 36, W, 36);
+
+    doc.setFont('times', 'bold');
+    doc.setTextColor(230, 190, 120);
+    doc.setFontSize(18);
+    doc.text('ESTUDIO CROMA', 14, 15);
+    doc.setTextColor(220, 205, 180);
+    doc.setFontSize(9);
+    doc.text('REPORTE DE PROYECTO - CAFE AROMA', 14, 24);
+    doc.setFontSize(8);
+    doc.text('CSS - Ciencias de la Computacion - Ceibal', 14, 31);
+
+    y = 46;
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(40, 30, 20);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold'); doc.text('DISEÑADOR/A:', 14, y);
+    doc.setFont('helvetica', 'normal'); doc.text(estadoJuego.nombre.toUpperCase(), 70, y);
+    y += 8;
+    doc.setFont('helvetica', 'bold'); doc.text('FECHA:', 14, y);
+    doc.setFont('helvetica', 'normal'); doc.text(new Date().toLocaleDateString('es-UY'), 70, y);
+    y += 12;
+
+    const puntaje = calcularPuntaje();
+    const completados = NIVELES.slice(0, 8).filter((_, i) => (estadoJuego.mascara & (1 << i)) !== 0).length;
+    const lab = (estadoJuego.mascara & 256) !== 0;
+
+    doc.setDrawColor(196, 160, 110); doc.line(14, y, W - 14, y); y += 10;
+    doc.setFont('times', 'bold'); doc.setFontSize(34); doc.setTextColor(139, 60, 20);
+    doc.text(puntaje.toFixed(1), 105, y + 10, { align: 'center' });
+    doc.setFontSize(13); doc.text('/ 10', 105, y + 20, { align: 'center' });
+    y += 26;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(110, 85, 55);
+    doc.text(`${completados}/8 encargos entregados` + (lab ? '  +  Gran Apertura completada' : ''), 105, y, { align: 'center' });
+    y += 12;
+    doc.setDrawColor(196, 160, 110); doc.line(14, y, W - 14, y); y += 10;
+
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(40, 30, 20);
+    doc.text('CSS REALIZADO', 14, y); y += 8;
+
+    const entregados = NIVELES.filter((nv, i) => (estadoJuego.mascara & (1 << i)) !== 0);
+    if (entregados.length === 0) {
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(120, 105, 80);
+        doc.text('Todavía no se entregó ningún encargo.', 14, y); y += 8;
+    }
+
+    entregados.forEach((nv) => {
+        asegurarEspacio(20);
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(139, 60, 20);
+        doc.text(`${nv.icono || ''} ${nv.num} · ${nv.titulo}`, 14, y); y += 6;
+
+        const codigo = estadoJuego.codigos[nv.id] || '(sin código guardado)';
+        doc.setFont('courier', 'normal'); doc.setFontSize(7.5); doc.setTextColor(50, 40, 30);
+        const lineas = doc.splitTextToSize(codigo, W - 30);
+        lineas.forEach(linea => { asegurarEspacio(5); doc.text(linea, 16, y); y += 4; });
+        y += 6;
+    });
+
+    doc.setFontSize(7); doc.setTextColor(120, 105, 80);
+    doc.text('Estudio Croma - Generado ' + new Date().toLocaleString('es-UY'), 14, H - 10);
+
+    const nomArch = 'reporte-croma-' + estadoJuego.nombre.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '.pdf';
+    doc.save(nomArch);
+}
+</script>
+</body></html>
