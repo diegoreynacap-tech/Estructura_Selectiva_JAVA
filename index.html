@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ESTUDIO CROMA · Café Aroma · CSS</title>
+<title>ESTUDIO CROMA · Café Aroma · Java: Estructuras Selectivas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Work+Sans:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
@@ -202,11 +202,11 @@ footer { text-align:center; font-family:'Courier Prime',monospace; font-weight:7
     <div class="logo-img">🎨</div>
     <div>
       <div class="logo-text">Estudio Croma</div>
-      <div class="logo-sub">Identidad visual · CSS</div>
+      <div class="logo-sub">Desarrollo de software · Java</div>
     </div>
   </div>
   <div class="hud">
-    <div class="hud-chip">DISEÑADOR/A: <b id="hudNombre">—</b></div>
+    <div class="hud-chip">PROGRAMADOR/A: <b id="hudNombre">—</b></div>
     <div class="hud-chip">ENCARGOS: <b id="hudZonas">0/8</b></div>
     <button class="btn-mini" id="btnMapa" type="button" style="display:none">🗂 Panel de Proyecto</button>
   </div>
@@ -221,27 +221,25 @@ footer { text-align:center; font-family:'Courier Prime',monospace; font-weight:7
     <h2>📩 Nuevo encargo</h2>
     <div class="mail">De: Martín Otero — Dueño de Café Aroma
 Para: Estudio CROMA
-Asunto: Brief de marca — necesito que esto tenga alma
+Asunto: Necesito un programa para la caja — que piense por mí
 
-Hola! Te paso todo lo que tengo en la cabeza para que arranques.
+Hola! Te cuento el problema.
 
-Café Aroma no es una cadena. Es un local a la calle, de barrio, con mesas de madera y ventanales grandes. La idea es que la gente venga a quedarse un rato — no es un "café para llevar y listo".
+En el café tengo mil decisiones por minuto: si la compra lleva descuento, si estamos en el happy hour, si ya cerramos, qué precio tiene lo que me piden por número... Hoy lo hago todo de cabeza y me equivoco.
 
-Lo que NO quiero: que parezca una cadena fría, ni algo "moderno" con paredes blancas y letras finitas. Tampoco algo recargado o infantil.
+Quiero un programa en Java que decida por mí. Que mire los datos (la hora, el total, el producto) y haga lo que corresponda: a veces una sola cosa extra, a veces elegir entre dos caminos, a veces entre varios.
 
-Quiero que cuando alguien entre a la página del menú sienta lo mismo que si abriera la puerta del local: cálido, hogareño, con textura.
-
-Te dejo el HTML del menú ya armado. Vos ponele el alma con el CSS.
+Eso sí: ordenado y claro, que mañana lo tiene que entender cualquiera que mire el código.
 
 Gracias totales,
 <span class="firma">Martín</span></div>
 
     <div class="campo" style="margin:16px 0">
-      <label for="inNombre" style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:rgb(22,20,26); display:block; margin-bottom:8px; text-transform:uppercase; font-size:.85rem">Tu nombre (diseñador/a de CROMA)</label>
+      <label for="inNombre" style="font-family:'Space Grotesk',sans-serif; font-weight:700; color:rgb(22,20,26); display:block; margin-bottom:8px; text-transform:uppercase; font-size:.85rem">Tu nombre (programador/a de CROMA)</label>
       <input type="text" id="inNombre" maxlength="40" autocomplete="off" placeholder="Ej: Sofía Méndez" style="width:100%; font-family:'Courier Prime',monospace; padding:11px 14px; border:3px solid rgb(22,20,26); border-radius:8px; font-size:1rem">
     </div>
     <div class="fila-botones">
-      <button class="btn-primario" id="btnComenzar" type="button">🎨 Abrir el Panel de Proyecto</button>
+      <button class="btn-primario" id="btnComenzar" type="button">☕ Abrir el Panel de Proyecto</button>
     </div>
     <p style="font-family:'Courier Prime',monospace; font-weight:700; font-size:.85rem; color:rgb(255,107,91); min-height:20px" id="msjNombre"></p>
   </div>
@@ -253,7 +251,7 @@ Gracias totales,
   <p class="mapa-sub">Elegí tu próximo encargo</p>
   <div class="barra-inf">
     <div class="pista"><div class="relleno" id="barraProg"></div></div>
-    <div class="texto" id="txtProg">Identidad visual: 0%</div>
+    <div class="texto" id="txtProg">Sistema de caja: 0%</div>
   </div>
   <div id="briefPanel"></div>
   <div class="grid-lugares" id="gridLugares"></div>
@@ -268,16 +266,16 @@ Gracias totales,
   <div id="nvBrief"></div>
   <div id="nvTeoria"></div>
   <div class="lab">
-    <h3>🖌 Aplicá el estilo</h3>
+    <h3>⌨ Escribí tu programa</h3>
     <div class="consigna" id="nvConsigna"></div>
     <div id="nvOjo"></div>
     <div class="dos-columnas">
       <div>
-        <div class="col-titulo">// Tu CSS //</div>
+        <div class="col-titulo">// Tu código Java //</div>
         <div class="editor-marco">
           <div class="editor-barra">
             <span class="punto p1"></span><span class="punto p2"></span><span class="punto p3"></span>
-            <span class="nom" id="nvArchivo">estilos.css</span>
+            <span class="nom" id="nvArchivo">Main.java</span>
           </div>
           <div class="editor-zona">
             <pre id="edHl" aria-hidden="true"></pre>
@@ -285,17 +283,17 @@ Gracias totales,
           </div>
         </div>
         <div class="fila-lab">
-          <button class="btn-verificar" id="btnVerificar" type="button">🔍 Revisar Estilo</button>
+          <button class="btn-verificar" id="btnVerificar" type="button">🔍 Revisar Código</button>
           <button class="btn-preview" id="btnReiniciar" type="button">↺ Reiniciar</button>
-          <button class="btn-preview" id="btnVerHTML" type="button">📄 Ver HTML dado</button>
+          <button class="btn-preview" id="btnVerHTML" type="button">📄 Ver datos del café</button>
         </div>
         <div class="chequeos" id="nvChequeos"></div>
       </div>
       <div>
-        <div class="col-titulo">// Vista previa del menú //</div>
+        <div class="col-titulo">// Salida de ejemplo //</div>
         <div class="preview-marco">
-          <div class="pv-cab">Así se ve el menú con tu CSS aplicado</div>
-          <iframe id="pvFrame" title="Vista previa del menú"></iframe>
+          <div class="pv-cab">Así se vería tu programa en la consola</div>
+          <pre class="cod noselect" id="pvFrame" style="margin:0; border-radius:0; min-height:220px; white-space:pre-wrap"></pre>
         </div>
       </div>
     </div>
@@ -309,7 +307,7 @@ Gracias totales,
 <!-- ============ MODAL VER HTML DADO ============ -->
 <div class="velo" id="veloHTML">
   <div class="modal">
-    <h2>📄 El HTML del menú</h2>
+    <h2>📄 Datos del café</h2>
     <pre class="cod" id="htmlDadoTexto" style="max-height:50vh; overflow:auto"></pre>
     <div class="fila-botones">
       <button class="btn-primario" id="btnCerrarHTML" type="button">Entendido</button>
@@ -320,7 +318,7 @@ Gracias totales,
 <!-- ============ MODAL ÉXITO ============ -->
 <div class="velo" id="veloExito">
   <div class="modal exito">
-    <h2>✔ ¡Al cliente le va a encantar!</h2>
+    <h2>✔ ¡El programa funciona!</h2>
     <p id="msjExito"></p>
     <div class="fila-botones">
       <button class="btn-primario" id="btnExitoOk" type="button">Siguiente Encargo</button>
@@ -334,9 +332,9 @@ Gracias totales,
     <h2>🎬 Llegó el día de la apertura</h2>
     <div class="mail">Ya resolviste todos los encargos por separado. Ahora Martín te pide una última cosa:
 
-"¿Podés armarme el menú COMPLETO, todo junto, tal como lo imaginé? Abrimos mañana. Esta va sin instrucciones paso a paso — confío en tu criterio."
+"¿Podés armarme la caja COMPLETA, todo junta, tal como la imaginé? Abrimos mañana. Esta va sin instrucciones paso a paso — confío en tu criterio."
 
-Sin teoría esta vez. Solo el brief completo y el HTML entero del menú.</div>
+Sin teoría esta vez. Solo la lista de requisitos.</div>
     <div class="fila-botones">
       <button class="btn-primario" id="btnAceptarInsano" type="button">🎬 Ir a la Gran Apertura</button>
       <button class="btn-secundario" id="btnEvacuar" type="button">Volver al panel</button>
@@ -348,7 +346,7 @@ Sin teoría esta vez. Solo el brief completo y el HTML entero del menú.</div>
 <div class="velo" id="veloFinal">
   <div class="modal exito">
     <h2>🏆 Café Aroma abrió sus puertas</h2>
-    <p>El menú quedó tal como Martín lo imaginó: cálido, hogareño, con personalidad de barrio. Quedás como <b>Diseñador/a Senior de CROMA</b>.</p>
+    <p>La caja decide sola: descuentos, horarios y menú, tal como Martín lo imaginó. Quedás como <b>Programador/a Senior de CROMA</b>.</p>
     <p>Tu puntaje final:</p>
     <div class="puntaje-grande" id="puntajeFinal">—</div>
     <div class="fila-botones">
@@ -360,313 +358,648 @@ Sin teoría esta vez. Solo el brief completo y el HTML entero del menú.</div>
 
 <button id="btnPdf" type="button" title="Descargar Reporte PDF">📄</button>
 
-<footer>Estudio Croma — con aroma a buen código</footer>
+<footer>Estudio Croma — con aroma a buen código · Java: Estructuras Selectivas</footer>
 <script>
 // ============================================================
 // ESTUDIO CROMA · MOTOR JAVASCRIPT
-// CSS: Selectores, Texto, Colores y Fondos · Ceibal
+// Java: Estructura Selectiva Simple, Doble y Múltiple · Ceibal
 // ============================================================
 
 // ============= EL HTML DEL MENÚ (YA DADO, NO SE TOCA) =============
-const MENU_HTML = `<div id="menu-cafe-aroma">
-  <header id="tituloLocal">
-    <h1>Café Aroma</h1>
-    <p class="slogan">Barrio, aroma y buenas charlas</p>
-  </header>
+const MENU_HTML = `CAFÉ AROMA — DATOS PARA LA CAJA
 
-  <nav class="categorias-nav">
-    <a href="#cafes">Cafés</a>
-    <a href="#panificados">Panificados</a>
-    <a href="#dulce">Dulce</a>
-    <a href="#salado">Salado</a>
-  </nav>
+MENÚ (opción · producto · precio)
+  1 · Cortado de la casa ....... $180
+  2 · Café con leche ........... $160
+  3 · Capuchino ................ $200
+  4 · Medialuna ................ $90
 
-  <section class="categoria" id="cafes">
-    <h2>Cafés</h2>
-    <article class="producto especialidad">
-      <h3>Cortado de la casa</h3>
-      <p class="descripcion">Espresso con un toque de leche, tueste medio.</p>
-      <span class="precio">$180</span>
-    </article>
-    <article class="producto">
-      <h3>Café con leche</h3>
-      <p class="descripcion">Clásico, suave, ideal para la mañana.</p>
-      <span class="precio">$160</span>
-    </article>
-    <article class="producto">
-      <h3>Capuchino</h3>
-      <p class="descripcion">Espuma cremosa con cacao espolvoreado.</p>
-      <span class="precio">$200</span>
-    </article>
-  </section>
-
-  <section class="categoria" id="panificados">
-    <h2>Panificados</h2>
-    <article class="producto">
-      <h3>Medialuna</h3>
-      <p class="descripcion">Manteca, recién horneada.</p>
-      <span class="precio">$90</span>
-    </article>
-    <article class="producto especialidad">
-      <h3>Chipá casero</h3>
-      <p class="descripcion">Receta de la abuela de Martín.</p>
-      <span class="precio">$120</span>
-    </article>
-  </section>
-
-  <section class="categoria" id="dulce">
-    <h2>Dulce</h2>
-    <article class="producto">
-      <h3>Torta de manzana</h3>
-      <p class="descripcion">Con canela y un toque de limón.</p>
-      <span class="precio">$210</span>
-    </article>
-    <article class="producto especialidad">
-      <h3>Alfajor de maicena</h3>
-      <p class="descripcion">Relleno de dulce de leche casero.</p>
-      <span class="precio">$150</span>
-    </article>
-  </section>
-
-  <section class="categoria" id="salado">
-    <h2>Salado</h2>
-    <article class="producto">
-      <h3>Tostado de jamón y queso</h3>
-      <p class="descripcion">Pan casero, jamón natural.</p>
-      <span class="precio">$230</span>
-    </article>
-    <article class="producto">
-      <h3>Tarta de verdura</h3>
-      <p class="descripcion">Porción generosa, de estación.</p>
-      <span class="precio">$220</span>
-    </article>
-  </section>
-
-  <div class="especial-del-dia">
-    <p>Especial del día: Cortado + Medialuna a $250</p>
-  </div>
-
-  <footer>
-    <p>Café Aroma — Hecho con cariño de barrio</p>
-  </footer>
-</div>`;
+REGLAS DEL NEGOCIO
+  - Compra de más de $500: 10% de descuento
+  - Jubilados (65 años o más): beneficio especial
+  - Happy hour: de 16 a 18 horas, cortado a mitad de precio
+  - Fin de semana: sábado (6) y domingo (7), torta casera
+  - Horario: abierto de 8 a 20 horas
+  - Mesas pares: ventana · Mesas impares: patio
+  - Sectores de cocina: cafes → Barra · panificados y dulce → Horno · salado → Plancha`;
 
 // ============= EL BRIEF (FIJO, SIEMPRE CONSULTABLE) =============
 const BRIEF_HTML = `
-<h4>☕ La onda del local, en una frase</h4>
-<p><i>"Un café de barrio con mesas de madera, para quedarse charlando toda la tarde. Cálido, con textura, sin pretensiones."</i></p>
+<h4>☕ Lo que necesita Martín, en una frase</h4>
+<p><i>"Un programa de caja que tome las decisiones por mí: que mire los datos y haga lo que corresponda."</i></p>
 
-<h4>🎯 Tres palabras que definen el tono</h4>
-<span class="chip-palabra">CÁLIDO</span><span class="chip-palabra">HOGAREÑO</span><span class="chip-palabra">SIN APUROS</span>
+<h4>🎯 Los tres tipos de decisión</h4>
+<span class="chip-palabra">SIMPLE: if</span><span class="chip-palabra">DOBLE: if - else</span><span class="chip-palabra">MÚLTIPLE: else if / switch</span>
 
-<h4>🚫 Lo que Martín NO quiere</h4>
+<h4>📏 Reglas del negocio</h4>
 <table class="tabla-evitar">
-<tr><td>Blanco puro (#FFFFFF)</td><td>Se siente clínico, de cadena corporativa</td></tr>
-<tr><td>Negro puro (#000000)</td><td>Muy duro, poco cálido</td></tr>
-<tr><td>Tipografías finas/condensadas</td><td>Difíciles de leer, sensación fría</td></tr>
-<tr><td>Colores neón o muy saturados</td><td>No es un local "trendy", es de barrio</td></tr>
-<tr><td>Todo centrado a la fuerza</td><td>Se siente rígido, no hogareño</td></tr>
+<tr><td>Total mayor a $500</td><td>10% de descuento</td></tr>
+<tr><td>Cliente de 65 años o más</td><td>Beneficio para jubilados</td></tr>
+<tr><td>Hora entre 16 y 18</td><td>Happy hour: cortado a mitad de precio</td></tr>
+<tr><td>Día 6 o 7</td><td>Fin de semana: torta casera</td></tr>
+<tr><td>Hora entre 8 y 19</td><td>Local abierto (a las 20 ya cierra)</td></tr>
 </table>
 
-<h4>🎨 Paleta de referencia</h4>
-<div class="swatch-fila">
-  <div class="swatch"><div class="cuadro" style="background:#6F4E37"></div> Marrón café</div>
-  <div class="swatch"><div class="cuadro" style="background:#F2E9DB"></div> Crema / hueso</div>
-  <div class="swatch"><div class="cuadro" style="background:#C48C3C"></div> Dorado mostaza</div>
-  <div class="swatch"><div class="cuadro" style="background:#7A8B5A"></div> Verde salvia (opcional)</div>
-</div>
+<h4>🧾 Menú para la caja</h4>
+<table class="tabla-evitar">
+<tr><td>1 · Cortado de la casa</td><td>$180</td></tr>
+<tr><td>2 · Café con leche</td><td>$160</td></tr>
+<tr><td>3 · Capuchino</td><td>$200</td></tr>
+<tr><td>4 · Medialuna</td><td>$90</td></tr>
+</table>
 `;
 
 // ============= CSS INICIAL DEL EDITOR (VACÍO, CON GUÍA) =============
-const CSS_VACIO = `/* Escribí tu CSS acá. El HTML del menú ya está armado (botón "Ver HTML dado"). */\n`;
+const CSS_VACIO = "// Tu código Java acá\n";
 
-// ============= DATOS DE LOS 8 ENCARGOS + LABORATORIO =============
+// ============= DATOS DE LOS 8 ENCARGOS + GRAN APERTURA =============
 const NIVELES = [
-{
-    id: 'e1', num: 'ENCARGO 01', titulo: 'El Inventario I', icono: '📦',
-    tema: 'Selector de tipo y selector universal', xp: 100,
-    consigna: `Martín quiere que TODO el menú arranque parejo, sin sorpresas de espaciado del navegador. Y quiere que los nombres de los productos (los &lt;h3&gt;) tengan más peso visual que el texto normal, y que las descripciones (los &lt;p class="descripcion"&gt;) sean cómodas de leer, con buen aire entre línea y línea.\n\n<b>Hacé:</b>\n1. Usá el <b>selector universal</b> para aplicarle a TODOS los elementos una propiedad que evite que el padding y el borde sumen tamaño extra a las cajas — pensá en cómo se llama esa propiedad del "modelo de caja"\n2. Usá el <b>selector de tipo</b> <code class="inl">h3</code> para que el nombre del producto se vea más grueso que el texto normal\n3. Usá el <b>selector de tipo</b> <code class="inl">p</code> para que las descripciones tengan más espacio entre las líneas de texto`,
-    teoria: [
-        {h: '¿Qué es un selector?', p: 'Un selector le dice al navegador <b>a qué elementos</b> se le va a aplicar un estilo. Sin selector correcto, el CSS más lindo del mundo no llega a ningún lado.'},
-        {c: '/* Así se escribe un selector de tipo (afecta a TODOS los <li>) */\nli {\n  color: darkred;\n}\n\n/* Así se escribe el selector universal (afecta a TODO) */\n* {\n  margin: 0;\n}'},
-        {p: 'El selector universal <code class="inl">*</code> es el más amplio posible — hay que usarlo con cuidado, típicamente para "resets" básicos, no para diseño fino. Fijate que el ejemplo usa <code class="inl">li</code> y <code class="inl">margin</code> — vos vas a necesitar otras etiquetas y otras propiedades para este encargo.'},
-        {d: '🎨 Regla de Croma: el selector de tipo es ideal para "todo lo que sea de esta etiqueta se ve igual". La propiedad exacta que necesitás para cada caso la vas a encontrar revisando el material del curso.'}
-    ],
-    checks: [
-        { regex: '\\*\\s*\\{[^}]*box-sizing\\s*:\\s*border-box', msj: 'Selector universal (*) con box-sizing: border-box' },
-        { regex: '(^|\\})\\s*h3\\s*\\{[^}]*font-weight', msj: 'Selector de tipo h3 con font-weight' },
-        { regex: '(^|\\})\\s*p\\s*\\{[^}]*line-height', msj: 'Selector de tipo p con line-height' }
-    ],
-    exito: '✔ Base prolija lista. El menú ya no se ve como un documento sin formato.'
-},
-{
-    id: 'e2', num: 'ENCARGO 02', titulo: 'El Inventario II', icono: '📦',
-    tema: 'Selector de clase', xp: 100,
-    consigna: `Todos los productos (&lt;article class="producto"&gt;) necesitan el mismo "aire" alrededor, para que no se sientan amontonados unos con otros. Y los que son <b>especialidad de la casa</b> (llevan además la clase <code class="inl">especialidad</code>) tienen que notarse un poco distintos del resto — son la joya del menú.\n\n<b>Hacé:</b>\n1. Con el <b>selector de clase</b> <code class="inl">.producto</code>, dale a todos los productos un respiro interno y separación con el siguiente\n2. Con el <b>selector de clase</b> <code class="inl">.especialidad</code>, hacé que se noten distintos del resto (pensá en algún borde, línea o fondo que los distinga — pero evitá el blanco puro)`,
-    teoria: [
-        {h: '¿Qué es un selector de clase?', p: 'Se escribe con un punto: <code class="inl">.producto</code>. Afecta a <b>todos los elementos que tengan esa clase</b> en su atributo <code class="inl">class</code> — sin importar la etiqueta que sea.'},
-        {c: '/* Así se escribe un selector de clase */\n.etiqueta {\n  padding: 10px;\n}\n\n/* Un elemento puede combinar dos clases */\n.etiqueta.destacada {\n  border: 2px solid orange;\n}'},
-        {p: 'Un elemento puede tener <b>varias clases a la vez</b> — como <code class="inl">class="producto especialidad"</code>. Ambos selectores (<code class="inl">.producto</code> y <code class="inl">.especialidad</code>) le van a aplicar sus estilos por separado.'},
-        {d: '🎨 Regla de Croma: la clase es para "grupos que comparten un rol", no toda la etiqueta — perfecto para distinguir las especialidades del resto. Qué propiedad exacta usar para distinguirlas queda a tu criterio de diseño.'}
-    ],
-    checks: [
-        { regex: '\\.producto\\s*\\{[^}]*padding', msj: '.producto con padding' },
-        { regex: '\\.producto\\s*\\{[^}]*margin-bottom', msj: '.producto con margin-bottom' },
-        { regex: '\\.especialidad\\s*\\{[^}]*(border-left|background)', msj: '.especialidad con border-left o background que la distinga' },
-        { type: 'custom', msj: 'El fondo de .especialidad no debe ser blanco puro (#fff/#ffffff/white)',
-          fn: (css) => {
-            const m = css.match(/\.especialidad\s*\{[^}]*\}/);
-            if (!m) return true; // si no usó background, este check no aplica
-            const bloque = m[0];
-            if (!/background/.test(bloque)) return true;
-            return !/background(-color)?\s*:\s*(#fff(fff)?|white|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\))/i.test(bloque);
-          } }
-    ],
-    exito: '✔ Las especialidades de la casa ya se destacan. Se nota cuáles son las joyas del menú.'
-},
-{
-    id: 'e3', num: 'ENCARGO 03', titulo: 'El Inventario III', icono: '📦',
-    tema: 'Selector de ID y selectores de grupo', xp: 100,
-    consigna: `El título del local (&lt;header id="tituloLocal"&gt;) es único — no hay otro igual en toda la página, así que merece un tratamiento propio y distinto al resto. Y para no repetir el mismo bloque de CSS dos veces, unificá algo que los títulos de categoría (&lt;h2&gt;) y los de producto (&lt;h3&gt;) puedan compartir.\n\n<b>Hacé:</b>\n1. Con el <b>selector de ID</b> <code class="inl">#tituloLocal</code>, dale un estilo propio que lo distinga del resto de los títulos\n2. Con un <b>selector de grupo</b> que incluya a <code class="inl">h2</code> y <code class="inl">h3</code> a la vez, definí algo que ambos vayan a compartir (por ejemplo, algo relacionado a la tipografía)`,
-    teoria: [
-        {h: '¿Qué son el selector de ID y el de grupo?', p: 'El <b>ID</b> se escribe con numeral: <code class="inl">#tituloLocal</code>. A diferencia de la clase, <b>un ID debe ser único</b> en toda la página — es para "ese elemento particular y ningún otro".'},
-        {c: '/* Así se escribe un selector de ID */\n#unico {\n  text-align: center;\n}\n\n/* Así se escribe un selector de grupo */\nspan, li {\n  color: teal;\n}'},
-        {p: 'El <b>selector de grupo</b> usa una coma para decir "aplicá esto a un selector Y también al otro", ahorrando escribir el mismo bloque dos veces.'},
-        {d: '🎨 Regla de Croma: ID para lo único e irrepetible (el logo del local). Grupo para "estas etiquetas distintas comparten algo en común" (la tipografía de los títulos, en este caso).'}
-    ],
-    checks: [
-        { regex: '#tituloLocal\\s*\\{[^}]+\\}', msj: '#tituloLocal con al menos una propiedad' },
-        { regex: 'h2\\s*,\\s*h3\\s*\\{[^}]*font-family|h3\\s*,\\s*h2\\s*\\{[^}]*font-family', msj: 'Selector de grupo h2, h3 con font-family compartida' }
-    ],
-    exito: '✔ El logo del local ya tiene identidad propia, y los títulos hablan el mismo idioma tipográfico.'
-},
-{
-    id: 'e4', num: 'ENCARGO 04', titulo: 'La Voz de la Marca I', icono: '✍️',
-    tema: 'Color de texto y familia de fuente', xp: 100,
-    consigna: `Ahora entra la personalidad de Café Aroma en el texto. Martín fue claro: nada de negro puro (se siente frío) y nada de fuentes tecnológicas o condensadas.\n\n<b>Hacé:</b>\n1. Definí el <code class="inl">color</code> de texto general del menú (por ejemplo en <code class="inl">body</code>) usando un tono oscuro y cálido — pensá en un marrón profundo, <b>nunca negro puro</b>\n2. Definí una <code class="inl">font-family</code> con personalidad cálida para los títulos (<code class="inl">h1</code>, <code class="inl">h2</code>, <code class="inl">h3</code>) — algo con carácter, no una tipografía fría de sistema`,
-    teoria: [
-        {h: '¿Qué son color y font-family?', p: '<code class="inl">color</code> define el color del texto (no del fondo). <code class="inl">font-family</code> define qué tipografía se usa — podés poner varias separadas por coma, como plan B por si la primera no está disponible.'},
-        {c: '/* Así se escriben color y font-family (valores solo de ejemplo) */\np {\n  color: darkslategray;\n  font-family: Verdana, sans-serif;\n}'},
-        {p: 'El negro puro (<code class="inl">#000000</code>) contrasta muy fuerte contra fondos claros — se siente "duro". Un tono oscuro con temperatura cumple la misma función de legibilidad, pero con calidez.'},
-        {d: '🎨 Regla de Croma: en marcas cálidas, el texto casi nunca es negro puro. Es un oscuro con temperatura — marrón, café, carbón tibio. El tono exacto y la tipografía quedan a tu criterio.'}
-    ],
-    checks: [
-        { regex: '(body|h1|h2|h3|p)\\s*\\{[^}]*color\\s*:', msj: 'Se define color de texto en algún selector' },
-        { type: 'custom', msj: 'El color de texto no debe ser negro puro (#000/#000000/black)',
-          fn: (css) => !/color\s*:\s*(#000(000)?|black|rgb\(\s*0\s*,\s*0\s*,\s*0\s*\))\s*;/i.test(css) },
-        { regex: '(h1|h2|h3)[^{]*\\{[^}]*font-family\\s*:', msj: 'font-family definida para los títulos' }
-    ],
-    exito: '✔ El menú ya "habla" con la voz cálida de Café Aroma, no con la voz fría de un documento.'
-},
-{
-    id: 'e5', num: 'ENCARGO 05', titulo: 'La Voz de la Marca II', icono: '✍️',
-    tema: 'Tamaño y grosor de fuente', xp: 100,
-    consigna: `En la carta tiene que quedar clarísimo qué es el nombre del producto y qué es el precio — son los dos datos que el cliente busca primero con la mirada.\n\n<b>Hacé:</b>\n1. Con <code class="inl">h3</code>, hacé que el nombre del producto se vea más grande que el texto normal\n2. Con <code class="inl">.precio</code>, hacé que el precio se vea más grueso para que se destaque a simple vista`,
-    teoria: [
-        {h: '¿Qué son font-size y font-weight?', p: '<code class="inl">font-size</code> controla qué tan grande se ve el texto. <code class="inl">font-weight</code> controla el grosor del trazo — <code class="inl">normal</code>, <code class="inl">bold</code>, o valores numéricos como <code class="inl">700</code>.'},
-        {c: '/* Así se escriben font-size y font-weight (valores solo de ejemplo) */\nspan {\n  font-size: 1.4rem;\n  font-weight: 900;\n}'},
-        {p: 'La <b>jerarquía visual</b> (qué se lee primero) se construye combinando tamaño y grosor — no hace falta gritar con mayúsculas ni colores llamativos.'},
-        {d: '🎨 Regla de Croma: el nombre del producto y el precio son los dos elementos que "más pesan" visualmente en una carta — todo lo demás es de apoyo. Cuánto más grande o grueso, es una decisión tuya.'}
-    ],
-    checks: [
-        { regex: '(^|\\})\\s*h3\\s*\\{[^}]*font-size', msj: 'h3 con font-size definido' },
-        { regex: '\\.precio\\s*\\{[^}]*font-weight\\s*:\\s*(bold|[6-9]00)', msj: '.precio con font-weight bold (o 600-900)' }
-    ],
-    exito: '✔ Ahora el ojo va directo al nombre del plato y al precio, tal como tiene que ser en una carta.'
-},
-{
-    id: 'e6', num: 'ENCARGO 06', titulo: 'La Voz de la Marca III', icono: '✍️',
-    tema: 'Alineación y decoración de texto', xp: 100,
-    consigna: `El slogan del local ("Barrio, aroma y buenas charlas") tiene que sentirse escrito a mano, no tipeado en una planilla. Y el menú de navegación (los links de categorías) no necesita el subrayado por defecto que traen los links.\n\n<b>Hacé:</b>\n1. Con <code class="inl">.slogan</code>, dale un tratamiento de texto que lo haga sentir más personal (pensá en cómo se ve un texto inclinado, o con alguna decoración sutil)\n2. Con <code class="inl">.categorias-nav a</code>, sacale la decoración por defecto que traen los links`,
-    teoria: [
-        {h: '¿Qué son text-align y text-decoration?', p: '<code class="inl">text-align</code> controla si el texto va a la izquierda, centro o derecha. <code class="inl">text-decoration</code> agrega o saca líneas (subrayado, tachado). <code class="inl">font-style</code> puede inclinar el texto.'},
-        {c: '/* Así se escriben (valores solo de ejemplo) */\nblockquote {\n  text-align: right;\n  text-decoration: underline;\n}'},
-        {p: 'El brief de Martín pide <b>evitar centrar todo por sistema</b> — el centrado se reserva para momentos puntuales (como el título del local), no como regla general.'},
-        {d: '🎨 Regla de Croma: la decoración de texto se usa con intención — un detalle sutil dice más que forzar mayúsculas o subrayados por todos lados.'}
-    ],
-    checks: [
-        { regex: '\\.slogan\\s*\\{[^}]*(font-style\\s*:\\s*italic|text-decoration)', msj: '.slogan con font-style italic o text-decoration' },
-        { regex: '\\.categorias-nav\\s+a\\s*\\{[^}]*text-decoration\\s*:\\s*none', msj: '.categorias-nav a con text-decoration: none' }
-    ],
-    exito: '✔ El slogan ya tiene calidez de puño y letra, y el menú de navegación se ve prolijo.'
-},
-{
-    id: 'e7', num: 'ENCARGO 07', titulo: 'La Paleta Oficial I', icono: '🎨',
-    tema: 'Color de fondo, HEX y RGB', xp: 100,
-    consigna: `Llegó el momento de definir los colores reales de la marca. Nada de blanco puro de fondo — Martín quiere sentir calidez apenas entre a la página.\n\n<b>Hacé:</b>\n1. Con <code class="inl">body</code>, definí un color de fondo cálido tipo crema (no blanco puro), escrito en HEX o en RGB\n2. Con <code class="inl">.especialidad</code>, definí un color de fondo cálido tipo dorado/mostaza, escrito en HEX o en RGB`,
-    teoria: [
-        {h: '¿Qué son HEX y RGB?', p: 'Ambos son formas de escribir un color exacto. <b>HEX</b> usa 6 caracteres (0-9, A-F): <code class="inl">#F2E9DB</code>. <b>RGB</b> usa 3 números de 0 a 255, uno por cada color de luz (rojo, verde, azul): <code class="inl">rgb(242, 233, 219)</code>. Son el mismo color, escrito de dos formas distintas.'},
-        {c: '/* Así se escriben (colores de ejemplo, no son los de Café Aroma) */\ndiv {\n  background-color: #4C6A5D; /* HEX */\n}\n\nspan {\n  background-color: rgb(90, 60, 130); /* RGB */\n}'},
-        {p: 'Fondo blanco puro es <code class="inl">#FFFFFF</code> o <code class="inl">rgb(255,255,255)</code> — evitalo acá, es justo lo que el brief pide que no uses.'},
-        {d: '🎨 Regla de Croma: HEX y RGB son intercambiables — usá el que te resulte más cómodo. El tono exacto de crema y de dorado queda a tu criterio de diseño.'}
-    ],
-    ojo: true,
-    checks: [
-        { type: 'custom', msj: 'body con background-color definido, distinto de blanco puro',
-          fn: (css) => {
-            const m = css.match(/body\s*\{[^}]*\}/);
-            if (!m) return false;
-            const bloque = m[0];
-            if (!/background(-color)?\s*:/.test(bloque)) return false;
-            return !/background(-color)?\s*:\s*(#fff(fff)?|white|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\))/i.test(bloque);
-          } },
-        { regex: '\\.especialidad\\s*\\{[^}]*background(-color)?\\s*:\\s*(#|rgb)', msj: '.especialidad con background-color en HEX o RGB' }
-    ],
-    exito: '✔ La paleta oficial de Café Aroma ya está sobre la mesa — cálida, tal como se pidió.'
-},
-{
-    id: 'e8', num: 'ENCARGO 08', titulo: 'La Paleta Oficial II', icono: '🎨',
-    tema: 'Transparencia con RGBA', xp: 100,
-    consigna: `El cartelito de "Especial del día" (&lt;div class="especial-del-dia"&gt;) tiene que verse como una etiqueta pegada en la vidriera — con un efecto de vidrio esmerilado, no un bloque de color sólido y opaco.\n\n<b>Hacé:</b>\nCon <code class="inl">.especial-del-dia</code>, definí un fondo usando <code class="inl">rgba()</code> donde el cuarto valor (la opacidad) sea <b>menor a 1</b>, para lograr ese efecto translúcido`,
-    teoria: [
-        {h: '¿Qué es RGBA?', p: 'Es RGB con un cuarto valor extra: la <b>opacidad (alfa)</b>, entre 0 (invisible) y 1 (sólido).'},
-        {c: '/* Así se escribe (valor de ejemplo) */\n.overlay {\n  background-color: rgba(20, 20, 20, 0.4);\n}'},
-        {p: 'Cuanto más cerca de 0 el alfa, más transparente. Cuanto más cerca de 1, más sólido. El efecto "vidrio esmerilado" suele lograrse en un punto intermedio.'},
-        {d: '🎨 Regla de Croma: RGBA es HEX/RGB con un plus — la misma paleta, pero con la posibilidad de dejar ver lo que hay detrás. El color y el nivel exacto de transparencia quedan a tu criterio.'}
-    ],
-    checks: [
-        { type: 'custom', msj: '.especial-del-dia con background usando rgba() con alfa entre 0 y 1 (sin llegar a 1)',
-          fn: (css) => {
-            const m = css.match(/\.especial-del-dia\s*\{[^}]*\}/);
-            if (!m) return false;
-            const rgba = m[0].match(/rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*([\d.]+)\s*\)/);
-            if (!rgba) return false;
-            const alfa = parseFloat(rgba[1]);
-            return alfa > 0 && alfa < 1;
-          } }
-    ],
-    exito: '✔ El especial del día ya tiene ese efecto de vidrio esmerilado, como una etiqueta real en la vidriera.'
-},
-{
-    id: 'lab', num: '🎬 GRAN APERTURA', titulo: 'El Menú Completo', icono: '🎬', xp: 350, insano: true,
-    consigna: `Escribí el CSS completo del menú de Café Aroma, integrando TODO lo que resolviste en los 8 encargos anteriores:\n\n1. Selector universal con la propiedad de "modelo de caja" del Encargo 01\n2. <code class="inl">.producto</code> y <code class="inl">.especialidad</code> con estilos propios\n3. <code class="inl">#tituloLocal</code> con estilo único + selector de grupo para títulos\n4. Color de texto cálido (sin negro puro) + tipografía con personalidad\n5. Tamaños y grosores que jerarquicen nombre y precio\n6. Alineación y decoración con criterio (sin centrar todo)\n7. Fondo general cálido (sin blanco puro) + paleta en HEX o RGB\n8. Transparencia RGBA en el especial del día\n\nSin teoría esta vez — el brief completo sigue disponible para consultar.`,
-    checks: [
-        { regex: '\\*\\s*\\{[^}]*box-sizing', msj: 'Selector universal con box-sizing' },
-        { regex: '\\.producto\\s*\\{[^}]+\\}', msj: '.producto con estilos' },
-        { regex: '\\.especialidad\\s*\\{[^}]+\\}', msj: '.especialidad con estilos' },
-        { regex: '#tituloLocal\\s*\\{[^}]+\\}', msj: '#tituloLocal con estilos' },
-        { regex: 'h2\\s*,\\s*h3\\s*\\{|h3\\s*,\\s*h2\\s*\\{', msj: 'Selector de grupo para títulos' },
-        { type: 'custom', msj: 'Color de texto definido, sin negro puro',
-          fn: (css) => /color\s*:/.test(css) && !/color\s*:\s*(#000(000)?|black|rgb\(\s*0\s*,\s*0\s*,\s*0\s*\))\s*;/i.test(css) },
-        { regex: '\\.precio\\s*\\{[^}]*font-weight', msj: '.precio con font-weight' },
-        { type: 'custom', msj: 'Fondo general sin blanco puro',
-          fn: (css) => {
-            const m = css.match(/body\s*\{[^}]*\}/);
-            if (!m || !/background/.test(m[0])) return false;
-            return !/background(-color)?\s*:\s*(#fff(fff)?|white|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\))/i.test(m[0]);
-          } },
-        { type: 'custom', msj: '.especial-del-dia con RGBA y transparencia real (alfa entre 0 y 1)',
-          fn: (css) => {
-            const m = css.match(/\.especial-del-dia\s*\{[^}]*\}/);
-            if (!m) return false;
-            const rgba = m[0].match(/rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*([\d.]+)\s*\)/);
-            if (!rgba) return false;
-            const alfa = parseFloat(rgba[1]);
-            return alfa > 0 && alfa < 1;
-          } }
-    ],
-    exito: '✔ CAFÉ AROMA ABRIÓ SUS PUERTAS. El menú completo tiene la voz de la marca de punta a punta.'
-}
+ {
+  "id": "e1",
+  "num": "ENCARGO 01",
+  "titulo": "La Caja I",
+  "icono": "💰",
+  "xp": 100,
+  "tema": "Estructura selectiva simple: if",
+  "consigna": "Martín quiere un programa para la caja: si el total de la compra <b>supera $500</b>, se aplica un <b>10% de descuento</b>. Si no la supera, el total queda igual.\n\n🎯 Qué hacer: leé el <b>total</b> con <code class=\"inl\">Scanner</code> (<code class=\"inl\">double</code>) y usá un <code class=\"inl\">if</code> SIN <code class=\"inl\">else</code> que, solo cuando el total supere 500, lo modifique aplicando el descuento. Después, <b>fuera del if</b>, mostrá el total a pagar.\n\nRecordá: la condición va entre paréntesis y las instrucciones del if entre llaves <code class=\"inl\">{ }</code>.",
+  "teoria": [
+   {
+    "h": "¿Qué es una estructura selectiva simple?",
+    "p": "Es una decisión con <b>una sola rama</b>: si la condición es verdadera, se ejecuta un bloque de instrucciones; si es falsa, simplemente se lo saltea y el programa sigue. En Java se escribe con <code class=\"inl\">if (condición) { ... }</code>. La condición es una expresión que da <code class=\"inl\">true</code> o <code class=\"inl\">false</code>, casi siempre con operadores como <code class=\"inl\">&gt;</code> o <code class=\"inl\">&lt;</code>."
+   },
+   {
+    "c": "int puntos = 120;\nif (puntos > 100) {\n  System.out.println(\"Cliente frecuente\");\n  puntos = puntos + 10;\n}\nSystem.out.println(\"Puntos: \" + puntos);",
+    "s": "Cliente frecuente\nPuntos: 130"
+   },
+   {
+    "p": "Si <code class=\"inl\">puntos</code> valiera 80, no se mostraría \"Cliente frecuente\" ni se sumarían los 10: el bloque se saltea y solo se ejecuta la última línea."
+   },
+   {
+    "d": "🎨 Regla de Croma: el if simple es para \"hacer algo EXTRA solo en cierto caso\". Lo que va después de la llave de cierre se ejecuta siempre."
+   }
+  ],
+  "checks": [
+   {
+    "regex": "import\\s+java\\.util\\.(Scanner|\\*)\\s*;",
+    "msj": "import java.util.Scanner;"
+   },
+   {
+    "regex": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
+    "msj": "Scanner creado con new Scanner(System.in)"
+   },
+   {
+    "regex": "\\.nextDouble\\s*\\(\\s*\\)",
+    "msj": "Total leído con nextDouble()"
+   },
+   {
+    "regex": "\\bif\\s*\\([^)]*[<>]=?[^)]*\\)\\s*\\{",
+    "msj": "Un if con condición de comparación y llaves",
+    "sc": true
+   },
+   {
+    "regex": "\\*\\s*0?\\.9|\\*\\s*0?\\.1|\\/\\s*10|0?\\.1\\d*\\s*\\*",
+    "msj": "El descuento del 10% calculado con un operador matemático",
+    "sc": true
+   },
+   {
+    "type": "nada_else",
+    "msj": "El ejercicio pide un if SIMPLE: no debe llevar else"
+   },
+   {
+    "regex": "System\\.out\\.print(ln|f)?\\s*\\(",
+    "msj": "Total a pagar mostrado con System.out.print/println"
+   }
+  ],
+  "exito": "✔ Caja funcionando. Cuando el total pasa de $500, el descuento se aplica solo.",
+  "salida": "Total de la compra: 650\nTotal a pagar: 585.0"
+ },
+ {
+  "id": "e2",
+  "num": "ENCARGO 02",
+  "titulo": "La Caja II",
+  "icono": "💰",
+  "xp": 100,
+  "tema": "Condiciones: operadores relacionales y equals()",
+  "consigna": "Los jubilados tienen beneficio: <b>65 años o más</b> reciben un mensaje especial. Y cuando el cliente elige \"mesa\" se le avisa que el servicio es en el salón.\n\n🎯 Qué hacer: leé la <b>edad</b> (<code class=\"inl\">int</code>) y el <b>tipo de pedido</b> (<code class=\"inl\">String</code>: \"mesa\" o \"llevar\") y escribí <b>2 estructuras if simples</b>:\n- Una que compare la edad con un operador relacional (<code class=\"inl\">&gt;=</code>) y muestre el mensaje de beneficio\n- Otra que compare el texto con <code class=\"inl\">equals()</code> y muestre el aviso del salón\n\nOjo: la lectura del String va DESPUÉS de un número, así que acordate de limpiar el buffer.",
+  "teoria": [
+   {
+    "h": "Operadores relacionales y comparación de textos",
+    "p": "Los operadores relacionales comparan dos valores y dan <code class=\"inl\">true</code> o <code class=\"inl\">false</code>: <code class=\"inl\">==</code> igual, <code class=\"inl\">!=</code> distinto, <code class=\"inl\">&gt;</code> mayor, <code class=\"inl\">&lt;</code> menor, <code class=\"inl\">&gt;=</code> mayor o igual y <code class=\"inl\">&lt;=</code> menor o igual. Un error clásico: <code class=\"inl\">=</code> asigna, <code class=\"inl\">==</code> compara. Y los <b>textos (String) no se comparan con ==</b>, sino con el método <code class=\"inl\">equals()</code>."
+   },
+   {
+    "c": "int hora = 9;\nString dia = \"sabado\";\nif (hora != 12) {\n  System.out.println(\"No es mediodía\");\n}\nif (dia.equals(\"sabado\")) {\n  System.out.println(\"Hay torta casera\");\n}",
+    "s": "No es mediodía\nHay torta casera"
+   },
+   {
+    "p": "Para comparar sin importar mayúsculas o minúsculas existe <code class=\"inl\">equalsIgnoreCase()</code>: <code class=\"inl\">dia.equalsIgnoreCase(\"SABADO\")</code> también da true."
+   },
+   {
+    "d": "🎨 Regla de Croma: números con ==, &gt;, &lt;; textos con equals(). Mezclarlos es el error más común y casi nunca da aviso del compilador."
+   }
+  ],
+  "checks": [
+   {
+    "regex": "import\\s+java\\.util\\.(Scanner|\\*)\\s*;",
+    "msj": "import java.util.Scanner;"
+   },
+   {
+    "regex": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
+    "msj": "Scanner creado con new Scanner(System.in)"
+   },
+   {
+    "regex": "\\.nextInt\\s*\\(\\s*\\)",
+    "msj": "Edad leída con nextInt()"
+   },
+   {
+    "regex": "\\.nextLine\\s*\\(\\s*\\)\\s*;",
+    "msj": "Al menos 2 nextLine() (limpiar buffer y leer el texto)",
+    "min": 2
+   },
+   {
+    "regex": "\\bif\\s*\\(\\s*\\w+\\s*>=\\s*\\w+\\s*\\)|\\bif\\s*\\(\\s*\\w+\\s*<=\\s*\\w+\\s*\\)",
+    "msj": "if con >= o <= comparando la edad",
+    "sc": true
+   },
+   {
+    "regex": "\\bif\\s*\\(\\s*\\w+\\.equals(IgnoreCase)?\\s*\\(",
+    "msj": "if con equals() o equalsIgnoreCase()"
+   },
+   {
+    "regex": "\\bif\\s*\\(",
+    "msj": "Al menos 2 estructuras if",
+    "min": 2,
+    "sc": true
+   },
+   {
+    "regex": "System\\.out\\.print(ln|f)?\\s*\\(",
+    "msj": "Mensajes con System.out.println",
+    "min": 2
+   }
+  ],
+  "exito": "✔ Edad y tipo de pedido evaluados. El mate ya está pronto para los jubilados.",
+  "salida": "Edad: 70\nTipo (mesa/llevar): mesa\nBeneficio jubilado: 15% de descuento\nServicio en el salón"
+ },
+ {
+  "id": "e3",
+  "num": "ENCARGO 03",
+  "titulo": "La Caja III",
+  "icono": "💰",
+  "xp": 100,
+  "tema": "Operadores lógicos: && , || y !",
+  "consigna": "Martín lanzó dos promociones:\n- <b>Happy hour</b>: entre las 16 y las 18 horas (inclusive), el cortado sale a mitad de precio\n- <b>Fin de semana</b>: si el día es sábado (6) o domingo (7), hay torta casera\n\n🎯 Qué hacer: leé la <b>hora</b> y el <b>día</b> (ambos <code class=\"inl\">int</code>) y escribí:\n- Un <code class=\"inl\">if</code> con <b>AND</b> (<code class=\"inl\">&amp;&amp;</code>): la hora tiene que ser mayor o igual a 16 <b>Y</b> menor o igual a 18\n- Un <code class=\"inl\">if</code> con <b>OR</b> (<code class=\"inl\">||</code>): el día es 6 <b>O</b> es 7\n- Un tercer <code class=\"inl\">if</code> con <b>NOT</b> (<code class=\"inl\">!</code>) aplicado a una condición, por ejemplo: avisar si NO es fin de semana",
+  "teoria": [
+   {
+    "h": "Combinar condiciones con operadores lógicos",
+    "p": "Los operadores lógicos combinan condiciones: <code class=\"inl\">&amp;&amp;</code> (AND) es verdadero solo si <b>ambas</b> lo son; <code class=\"inl\">||</code> (OR) es verdadero si <b>al menos una</b> lo es; <code class=\"inl\">!</code> (NOT) invierte el resultado. Cada lado del operador tiene que ser una condición completa: <code class=\"inl\">x &gt; 5 &amp;&amp; x &lt; 10</code>, nunca <code class=\"inl\">5 &lt; x &lt; 10</code>."
+   },
+   {
+    "c": "int temp = 22;\nboolean llueve = false;\nif (temp >= 18 && temp <= 26) {\n  System.out.println(\"Clima agradable\");\n}\nif (temp < 10 || llueve) {\n  System.out.println(\"Llevá abrigo\");\n}\nif (!llueve) {\n  System.out.println(\"Hay mesas afuera\");\n}",
+    "s": "Clima agradable\nHay mesas afuera"
+   },
+   {
+    "p": "<code class=\"inl\">&amp;&amp;</code> se evalúa antes que <code class=\"inl\">||</code>. Ante la duda, usá paréntesis para que se entienda qué se agrupa con qué."
+   },
+   {
+    "d": "🎨 Regla de Croma: \"entre A y B\" siempre es un AND (&gt;= A &amp;&amp; &lt;= B). \"Una cosa o la otra\" es un OR."
+   }
+  ],
+  "checks": [
+   {
+    "regex": "import\\s+java\\.util\\.(Scanner|\\*)\\s*;",
+    "msj": "import java.util.Scanner;"
+   },
+   {
+    "regex": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
+    "msj": "Scanner creado con new Scanner(System.in)"
+   },
+   {
+    "regex": "\\.nextInt\\s*\\(\\s*\\)",
+    "msj": "Hora y día leídos con nextInt()",
+    "min": 2
+   },
+   {
+    "regex": "&&",
+    "msj": "Operador && (AND) en una condición",
+    "sc": true
+   },
+   {
+    "regex": "\\|\\|",
+    "msj": "Operador || (OR) en una condición",
+    "sc": true
+   },
+   {
+    "regex": "!\\s*\\(|!\\s*[a-zA-Z_]",
+    "msj": "Operador ! (NOT) usado en una condición",
+    "sc": true
+   },
+   {
+    "regex": "\\bif\\s*\\(",
+    "msj": "Al menos 3 estructuras if",
+    "min": 3,
+    "sc": true
+   },
+   {
+    "regex": "System\\.out\\.print(ln|f)?\\s*\\(",
+    "msj": "Mensajes con System.out.println",
+    "min": 3
+   }
+  ],
+  "exito": "✔ Promos activadas. El happy hour y el fin de semana ya se detectan solos.",
+  "salida": "Hora: 17\nDía (1-7): 6\nHappy hour: cortado a mitad de precio\nHoy hay torta casera\nNo es un día de semana común"
+ },
+ {
+  "id": "e4",
+  "num": "ENCARGO 04",
+  "titulo": "Las Mesas I",
+  "icono": "🪑",
+  "xp": 100,
+  "tema": "Estructura selectiva doble: if - else",
+  "consigna": "El salón de Café Aroma tiene dos zonas: las mesas de número <b>par</b> están junto a la ventana y las de número <b>impar</b> están en el patio.\n\n🎯 Qué hacer: leé el <b>número de mesa</b> (<code class=\"inl\">int</code>) y, con un <code class=\"inl\">if - else</code>, mostrá en cuál de las dos zonas está. Usá el operador <code class=\"inl\">%</code> (resto) para decidir si es par.\n\nCon el if-else SIEMPRE se ejecuta una de las dos ramas, nunca las dos y nunca ninguna.",
+  "teoria": [
+   {
+    "h": "¿Qué es una estructura selectiva doble?",
+    "p": "Tiene <b>dos ramas</b>: una para cuando la condición es verdadera y otra, con <code class=\"inl\">else</code>, para cuando es falsa. Se ejecuta <b>exactamente una</b> de las dos. El <code class=\"inl\">else</code> no lleva condición: es \"en cualquier otro caso\"."
+   },
+   {
+    "c": "int edad = 16;\nif (edad >= 18) {\n  System.out.println(\"Mayor de edad\");\n} else {\n  System.out.println(\"Menor de edad\");\n}",
+    "s": "Menor de edad"
+   },
+   {
+    "p": "Un número es par si el resto de dividirlo por 2 es cero: <code class=\"inl\">n % 2 == 0</code>. Si no, es impar."
+   },
+   {
+    "d": "🎨 Regla de Croma: usá if-else cuando las dos ramas son \"lo contrario\" una de otra (par/impar, abierto/cerrado, aprobó/no aprobó)."
+   }
+  ],
+  "checks": [
+   {
+    "regex": "import\\s+java\\.util\\.(Scanner|\\*)\\s*;",
+    "msj": "import java.util.Scanner;"
+   },
+   {
+    "regex": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
+    "msj": "Scanner creado con new Scanner(System.in)"
+   },
+   {
+    "regex": "\\.nextInt\\s*\\(\\s*\\)",
+    "msj": "Número de mesa leído con nextInt()"
+   },
+   {
+    "regex": "%\\s*2\\s*==\\s*0|%\\s*2\\s*!=\\s*0|%\\s*2\\s*==\\s*1",
+    "msj": "Condición con % 2 para decidir si es par",
+    "sc": true
+   },
+   {
+    "regex": "\\bif\\s*\\([^)]*\\)\\s*\\{[^}]*\\}\\s*else\\s*\\{",
+    "msj": "Estructura if (...) { ... } else { ... }",
+    "sc": true
+   },
+   {
+    "regex": "System\\.out\\.print(ln|f)?\\s*\\(",
+    "msj": "Zona mostrada con System.out.println",
+    "min": 2
+   }
+  ],
+  "exito": "✔ Cada cliente sabe dónde sentarse: ventana o patio, sin dudas.",
+  "salida": "Número de mesa: 7\nMesa 7: zona del patio"
+ },
+ {
+  "id": "e5",
+  "num": "ENCARGO 05",
+  "titulo": "Las Mesas II",
+  "icono": "🪑",
+  "xp": 100,
+  "tema": "if - else con condiciones lógicas",
+  "consigna": "Martín quiere que el cartel de la puerta se arme solo: el café abre de <b>8 a 20 horas</b> (a las 20 ya cierra).\n\n🎯 Qué hacer: leé la <b>hora</b> (<code class=\"inl\">int</code>, de 0 a 23) y, con un <code class=\"inl\">if - else</code> cuya condición use <code class=\"inl\">&amp;&amp;</code>, mostrá \"ABIERTO\" o \"CERRADO\".\n\nAdemás, calculá el <b>total con propina</b>: leé el total (<code class=\"inl\">double</code>) y en otro if-else decidí: si la compra es de <b>$1000 o más</b> la propina sugerida es el 5%, y si no, el 10%. Mostrá la propina.",
+  "teoria": [
+   {
+    "h": "if-else con condiciones compuestas",
+    "p": "La condición de un if-else puede ser tan compleja como necesites: <code class=\"inl\">if (a &gt;= 8 &amp;&amp; a &lt; 20) { ... } else { ... }</code>. El <code class=\"inl\">else</code> cubre TODO lo que no cumpla esa condición, por eso no hace falta escribir la condición contraria."
+   },
+   {
+    "c": "int hora = 23;\nif (hora >= 18 && hora <= 23) {\n  System.out.println(\"Noche\");\n} else {\n  System.out.println(\"No es de noche\");\n}",
+    "s": "Noche"
+   },
+   {
+    "d": "🎨 Regla de Croma: si te encontrás escribiendo la condición contraria a mano para el else, casi seguro sobra: el else ya la incluye."
+   }
+  ],
+  "checks": [
+   {
+    "regex": "import\\s+java\\.util\\.(Scanner|\\*)\\s*;",
+    "msj": "import java.util.Scanner;"
+   },
+   {
+    "regex": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
+    "msj": "Scanner creado con new Scanner(System.in)"
+   },
+   {
+    "regex": "\\.nextInt\\s*\\(\\s*\\)",
+    "msj": "Hora leída con nextInt()"
+   },
+   {
+    "regex": "\\.nextDouble\\s*\\(\\s*\\)",
+    "msj": "Total leído con nextDouble()"
+   },
+   {
+    "regex": "\\bif\\s*\\([^)]*&&[^)]*\\)\\s*\\{",
+    "msj": "Un if con && en la condición",
+    "sc": true
+   },
+   {
+    "regex": "\\}\\s*else\\s*\\{",
+    "msj": "Al menos 2 estructuras con else",
+    "min": 2,
+    "sc": true
+   },
+   {
+    "regex": "ABIERTO",
+    "msj": "Se muestra ABIERTO"
+   },
+   {
+    "regex": "CERRADO",
+    "msj": "Se muestra CERRADO"
+   },
+   {
+    "regex": ">=\\s*1000",
+    "msj": "Condición de compra de $1000 o más",
+    "sc": true
+   }
+  ],
+  "exito": "✔ El cartel de la puerta ya se actualiza solo y la propina sugerida también.",
+  "salida": "Hora: 21\nCERRADO\nTotal: 1200\nPropina sugerida (5%): 60.0"
+ },
+ {
+  "id": "e6",
+  "num": "ENCARGO 06",
+  "titulo": "La Carta I",
+  "icono": "📋",
+  "xp": 100,
+  "tema": "Estructura selectiva múltiple: if - else if - else",
+  "consigna": "Martín quiere descuentos escalonados según el total de la compra:\n- Menos de $200: sin descuento\n- Desde $200 y menos de $500: 5%\n- Desde $500 y menos de $1000: 10%\n- $1000 o más: 15%\n\n🎯 Qué hacer: leé el <b>total</b> (<code class=\"inl\">double</code>) y armá <b>una sola cadena</b> con <code class=\"inl\">if - else if - else</code> que guarde en una variable el porcentaje de descuento. Después calculá y mostrá el total a pagar.\n\nPensá en el orden: la cadena se corta en la PRIMERA condición verdadera.",
+  "teoria": [
+   {
+    "h": "Elegir entre varias opciones con else if",
+    "p": "Cuando hay <b>más de dos caminos</b>, se encadenan condiciones con <code class=\"inl\">else if</code>. Java prueba las condiciones <b>de arriba hacia abajo</b> y ejecuta solo la primera que sea verdadera; el <code class=\"inl\">else</code> final recoge todo lo que quedó sin cubrir (es opcional, pero muy útil)."
+   },
+   {
+    "c": "int nota = 7;\nif (nota >= 9) {\n  System.out.println(\"Excelente\");\n} else if (nota >= 6) {\n  System.out.println(\"Aprobado\");\n} else if (nota >= 3) {\n  System.out.println(\"Recupera\");\n} else {\n  System.out.println(\"Reprobado\");\n}",
+    "s": "Aprobado"
+   },
+   {
+    "p": "Como se corta en la primera verdadera, no hace falta repetir el límite inferior: si llegó al segundo <code class=\"inl\">else if</code>, ya se sabe que <code class=\"inl\">nota</code> NO es mayor o igual a 9."
+   },
+   {
+    "d": "🎨 Regla de Croma: ordená las condiciones de la más específica/exigente a la más general. Un orden equivocado hace que una rama nunca se ejecute."
+   }
+  ],
+  "checks": [
+   {
+    "regex": "import\\s+java\\.util\\.(Scanner|\\*)\\s*;",
+    "msj": "import java.util.Scanner;"
+   },
+   {
+    "regex": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
+    "msj": "Scanner creado con new Scanner(System.in)"
+   },
+   {
+    "regex": "\\.nextDouble\\s*\\(\\s*\\)",
+    "msj": "Total leído con nextDouble()"
+   },
+   {
+    "regex": "\\}\\s*else\\s+if\\s*\\(",
+    "msj": "Al menos 2 else if encadenados",
+    "min": 2,
+    "sc": true
+   },
+   {
+    "regex": "\\bif\\s*\\([^)]*\\)\\s*\\{[\\s\\S]*?\\}\\s*else\\s+if[\\s\\S]*?\\}\\s*else\\s*\\{",
+    "msj": "Cadena completa: if, else if y else final",
+    "sc": true
+   },
+   {
+    "regex": "0?\\.05|0?\\.10?\\b|0?\\.15",
+    "msj": "Los porcentajes 5%, 10% y 15% presentes",
+    "sc": true
+   },
+   {
+    "regex": "System\\.out\\.print(ln|f)?\\s*\\(",
+    "msj": "Total a pagar mostrado"
+   }
+  ],
+  "exito": "✔ Descuentos escalonados funcionando. Mientras más compra el cliente, más ahorra.",
+  "salida": "Total: 750\nDescuento: 10%\nTotal a pagar: 675.0"
+ },
+ {
+  "id": "e7",
+  "num": "ENCARGO 07",
+  "titulo": "La Carta II",
+  "icono": "📋",
+  "xp": 100,
+  "tema": "Estructura selectiva múltiple: switch con int",
+  "consigna": "En la caja se elige el producto por número. Cuando todas las opciones se deciden comparando UNA variable con valores fijos, conviene un <code class=\"inl\">switch</code>.\n\nMenú: 1 Cortado ($180), 2 Café con leche ($160), 3 Capuchino ($200), 4 Medialuna ($90).\n\n🎯 Qué hacer: leé la <b>opción</b> (<code class=\"inl\">int</code>) y con un <code class=\"inl\">switch</code> asigná el <b>precio</b> a una variable. Cada <code class=\"inl\">case</code> termina con <code class=\"inl\">break</code>. Incluí un <code class=\"inl\">default</code> para las opciones inválidas, que muestre \"Opción inválida\". Mostrá el precio elegido.",
+  "teoria": [
+   {
+    "h": "¿Cómo funciona switch?",
+    "p": "<code class=\"inl\">switch (variable)</code> compara el valor de una variable con cada <code class=\"inl\">case</code> y salta al que coincide. El <code class=\"inl\">break</code> corta la ejecución al terminar el caso: <b>sin break, Java sigue ejecutando los casos de abajo</b>. El <code class=\"inl\">default</code> se ejecuta si ningún caso coincide."
+   },
+   {
+    "c": "int dia = 3;\nString nombre;\nswitch (dia) {\n  case 1:\n    nombre = \"Lunes\";\n    break;\n  case 2:\n    nombre = \"Martes\";\n    break;\n  case 3:\n    nombre = \"Miércoles\";\n    break;\n  default:\n    nombre = \"Otro día\";\n}\nSystem.out.println(nombre);",
+    "s": "Miércoles"
+   },
+   {
+    "p": "El switch solo compara <b>igualdad</b> con valores fijos. Para rangos (\"mayor a 500\") o condiciones compuestas se usa if - else if."
+   },
+   {
+    "d": "🎨 Regla de Croma: olvidar un break es el error clásico del switch: el programa \"se cae\" hacia el caso siguiente y muestra algo que no corresponde."
+   }
+  ],
+  "checks": [
+   {
+    "regex": "import\\s+java\\.util\\.(Scanner|\\*)\\s*;",
+    "msj": "import java.util.Scanner;"
+   },
+   {
+    "regex": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
+    "msj": "Scanner creado con new Scanner(System.in)"
+   },
+   {
+    "regex": "\\.nextInt\\s*\\(\\s*\\)",
+    "msj": "Opción leída con nextInt()"
+   },
+   {
+    "regex": "switch\\s*\\(\\s*\\w+\\s*\\)",
+    "msj": "Estructura switch (variable)",
+    "sc": true
+   },
+   {
+    "regex": "case\\s+\\d+\\s*:",
+    "msj": "Al menos 4 casos con case número:",
+    "min": 4,
+    "sc": true
+   },
+   {
+    "regex": "break\\s*;",
+    "msj": "Al menos 3 break;",
+    "min": 3,
+    "sc": true
+   },
+   {
+    "regex": "default\\s*:",
+    "msj": "Caso default presente",
+    "sc": true
+   },
+   {
+    "regex": "Opci[oó]n inv[aá]lida",
+    "msj": "Mensaje \"Opción inválida\" en el default"
+   },
+   {
+    "regex": "System\\.out\\.print(ln|f)?\\s*\\(",
+    "msj": "Resultados mostrados"
+   }
+  ],
+  "exito": "✔ La carta por número ya funciona, y las opciones inválidas no rompen la caja.",
+  "salida": "Opción (1-4): 3\nPrecio: $200"
+ },
+ {
+  "id": "e8",
+  "num": "ENCARGO 08",
+  "titulo": "La Carta III",
+  "icono": "📋",
+  "xp": 100,
+  "tema": "switch con String y casos agrupados",
+  "consigna": "La cocina del café está dividida en sectores según la categoría del pedido:\n- \"cafes\" → Barra\n- \"panificados\" y \"dulce\" → Horno\n- \"salado\" → Plancha\n- cualquier otra → \"Categoría desconocida\"\n\n🎯 Qué hacer: leé la <b>categoría</b> (<code class=\"inl\">String</code>) y con un <code class=\"inl\">switch</code> sobre ese texto mostrá el sector. Panificados y dulce llevan el MISMO sector: agrupá sus dos <code class=\"inl\">case</code> seguidos, sin <code class=\"inl\">break</code> entre ellos. No te olvides de <code class=\"inl\">break</code> y <code class=\"inl\">default</code> en el resto.",
+  "teoria": [
+   {
+    "h": "switch con textos y casos agrupados",
+    "p": "Desde Java 7 el <code class=\"inl\">switch</code> también acepta <code class=\"inl\">String</code>, y los <code class=\"inl\">case</code> llevan el texto entre comillas. Si varios casos deben hacer lo mismo, se escriben <b>uno debajo del otro</b> sin <code class=\"inl\">break</code> entre ellos: el primero \"cae\" en el siguiente a propósito, y el <code class=\"inl\">break</code> final corta para todos."
+   },
+   {
+    "c": "String dia = \"sabado\";\nswitch (dia) {\n  case \"sabado\":\n  case \"domingo\":\n    System.out.println(\"Fin de semana\");\n    break;\n  case \"lunes\":\n    System.out.println(\"Arranca la semana\");\n    break;\n  default:\n    System.out.println(\"Día común\");\n}",
+    "s": "Fin de semana"
+   },
+   {
+    "d": "🎨 Regla de Croma: en un switch con textos, escribí exactamente lo mismo que el usuario va a tipear (mayúsculas incluidas). Una buena costumbre es pasar la entrada a minúsculas con toLowerCase()."
+   }
+  ],
+  "checks": [
+   {
+    "regex": "import\\s+java\\.util\\.(Scanner|\\*)\\s*;",
+    "msj": "import java.util.Scanner;"
+   },
+   {
+    "regex": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
+    "msj": "Scanner creado con new Scanner(System.in)"
+   },
+   {
+    "regex": "String\\s+\\w+\\s*=\\s*\\w+\\.next(Line)?\\s*\\(\\s*\\)",
+    "msj": "Categoría leída como String"
+   },
+   {
+    "regex": "switch\\s*\\(\\s*\\w+(\\.toLowerCase\\s*\\(\\s*\\))?\\s*\\)",
+    "msj": "switch sobre la variable de texto",
+    "sc": true
+   },
+   {
+    "regex": "case\\s+\"[^\"]+\"\\s*:",
+    "msj": "Al menos 4 casos con texto (case \"...\"):",
+    "min": 4
+   },
+   {
+    "regex": "case\\s+\"[^\"]+\"\\s*:\\s*case\\s+\"[^\"]+\"\\s*:",
+    "msj": "Dos case agrupados uno debajo del otro"
+   },
+   {
+    "regex": "break\\s*;",
+    "msj": "Al menos 3 break;",
+    "min": 3,
+    "sc": true
+   },
+   {
+    "regex": "default\\s*:",
+    "msj": "Caso default presente",
+    "sc": true
+   }
+  ],
+  "exito": "✔ Cada pedido llega al sector correcto de la cocina, hasta los que comparten horno.",
+  "salida": "Categoría: dulce\nSector: Horno"
+ },
+ {
+  "id": "lab",
+  "num": "🎬 GRAN APERTURA",
+  "titulo": "La Caja Completa",
+  "icono": "🎬",
+  "xp": 350,
+  "insano": true,
+  "consigna": "Programa de caja completo de Café Aroma, integrando TODO lo de los 8 encargos:\n\n1. Leer con <code class=\"inl\">Scanner</code> la <b>opción del menú</b> (1 a 4, como en el Encargo 07), la <b>cantidad</b> (<code class=\"inl\">int</code>) y la <b>hora</b> (<code class=\"inl\">int</code>)\n2. Un <code class=\"inl\">switch</code> con <code class=\"inl\">case</code>, <code class=\"inl\">break</code> y <code class=\"inl\">default</code> para obtener el precio unitario\n3. Calcular el subtotal (precio por cantidad)\n4. Una cadena <code class=\"inl\">if - else if - else</code> para el porcentaje de descuento según el subtotal\n5. Un if o if-else con operador lógico (<code class=\"inl\">&amp;&amp;</code> o <code class=\"inl\">||</code>) para la <b>happy hour</b> (de 16 a 18 horas, 10% extra de descuento)\n6. Un if-else para mostrar si el local está ABIERTO o CERRADO a esa hora\n7. Mostrar el total final con <code class=\"inl\">System.out.printf</code> y 2 decimales",
+  "checks": [
+   {
+    "regex": "import\\s+java\\.util\\.(Scanner|\\*)\\s*;",
+    "msj": "import java.util.Scanner;"
+   },
+   {
+    "regex": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
+    "msj": "Scanner creado con new Scanner(System.in)"
+   },
+   {
+    "regex": "\\.nextInt\\s*\\(\\s*\\)",
+    "msj": "Opción, cantidad y hora leídas con nextInt()",
+    "min": 3
+   },
+   {
+    "regex": "switch\\s*\\(\\s*\\w+\\s*\\)",
+    "msj": "switch para el precio",
+    "sc": true
+   },
+   {
+    "regex": "case\\s+\\d+\\s*:",
+    "msj": "Al menos 4 case",
+    "min": 4,
+    "sc": true
+   },
+   {
+    "regex": "break\\s*;",
+    "msj": "Al menos 3 break;",
+    "min": 3,
+    "sc": true
+   },
+   {
+    "regex": "default\\s*:",
+    "msj": "default presente",
+    "sc": true
+   },
+   {
+    "regex": "\\}\\s*else\\s+if\\s*\\(",
+    "msj": "Cadena con else if",
+    "sc": true
+   },
+   {
+    "regex": "\\}\\s*else\\s*\\{",
+    "msj": "else final",
+    "min": 2,
+    "sc": true
+   },
+   {
+    "regex": "&&|\\|\\|",
+    "msj": "Operador lógico (&& o ||) en una condición",
+    "sc": true
+   },
+   {
+    "regex": "ABIERTO",
+    "msj": "Se muestra ABIERTO"
+   },
+   {
+    "regex": "CERRADO",
+    "msj": "Se muestra CERRADO"
+   },
+   {
+    "regex": "printf\\s*\\([^;]*%\\.\\d+f",
+    "msj": "printf con marcador de 2 decimales (%.2f)"
+   }
+  ],
+  "exito": "✔ CAFÉ AROMA ABRIÓ SUS PUERTAS. La caja decide sola: descuentos, horarios y menú.",
+  "salida": "Opción (1-4): 3\nCantidad: 4\nHora: 17\nABIERTO\nSubtotal: 800.00\nDescuento: 10% + 10% happy hour\nTotal final: 640.00"
+ }
 ];
 
 // ============= ESTADO GLOBAL =============
@@ -674,7 +1007,7 @@ let estadoJuego = {
     nombre: '',
     zonaActual: null,
     mascara: 0,
-    codigos: {}   // CSS final guardado por encargo: { e1: "...", e2: "...", ... }
+    codigos: {}   // Código Java final guardado por encargo: { e1: "...", e2: "...", ... }
 };
 
 // ============= INICIALIZACIÓN =============
@@ -746,7 +1079,7 @@ function mostrarMapa() {
 
 function crearBrief(idPrefijo) {
     return `<div class="brief-caja" id="${idPrefijo}">
-        <div class="brief-cab"><span>📋</span><span class="tit">BRIEF DE MARCA — CAFÉ AROMA (consultar cuando quieras)</span><span class="flecha">▼</span></div>
+        <div class="brief-cab"><span>📋</span><span class="tit">REGLAS DEL NEGOCIO — CAFÉ AROMA (consultar cuando quieras)</span><span class="flecha">▼</span></div>
         <div class="brief-cuerpo"><div class="brief-inner">${BRIEF_HTML}</div></div>
     </div>`;
 }
@@ -795,7 +1128,7 @@ function abrirZona(idx) {
         nv.teoria.forEach(t => {
             if (t.h) teoriasHTML += `<div class="teoria-caja"><div class="teoria-cab"><span class="tit">${t.h}</span><span class="flecha">▼</span></div><div class="teoria-cuerpo"><div class="teoria-inner"><div class="bloque-teoria"><p>${t.p || ''}</p></div></div></div></div>`;
             else if (t.p) teoriasHTML += `<p style="line-height:1.7; margin:10px 0; color:rgb(75,58,42)">${t.p}</p>`;
-            else if (t.c) teoriasHTML += `<pre class="cod">${tokenizarCSS(t.c)}</pre>`;
+            else if (t.c) teoriasHTML += `<pre class="cod" style="margin-bottom:0">${tokenizarJava(t.c)}</pre>` + (t.s ? `<div style="font-family:'Courier Prime',monospace; font-size:.72rem; color:rgb(160,140,95); padding:6px 12px 2px">🖥 Salida en la consola:</div><pre class="cod" style="margin-top:0">${escaparHTML(t.s)}</pre>` : '');
             else if (t.d) teoriasHTML += `<div class="destacado">${t.d}</div>`;
         });
         teoriasHTML += '</div>';
@@ -853,45 +1186,31 @@ function setupMiniJuegoOjo() {
     };
 }
 
-// ============= TOKENIZADOR CSS =============
+// ============= TOKENIZADOR JAVA =============
 function tokenizarEnVivo() {
-    document.getElementById('edHl').innerHTML = tokenizarCSS(document.getElementById('edTxt').value);
+    document.getElementById('edHl').innerHTML = tokenizarJava(document.getElementById('edTxt').value);
 }
 
-function tokenizarCSS(codigo) {
-    let html = escaparHTML(codigo);
-    // Comentarios
-    html = html.replace(/\/\*[\s\S]*?\*\//g, (m) => `<span class="tk-com">${m}</span>`);
-    // Selectores (antes de la llave)
-    html = html.replace(/([^{}]+)\{/g, (m, sel) => {
-        if (/<span class="tk-com">/.test(sel)) return m;
-        return `<span class="tk-sel">${sel}</span>{`;
-    });
-    // Propiedad: valor;
-    html = html.replace(/([\w-]+)(\s*:\s*)([^;{}]+)(;)/g, (m, prop, dosp, val, punto) => {
-        return `<span class="tk-prop">${prop}</span>${dosp}<span class="tk-val">${val}</span>${punto}`;
-    });
-    return html;
+function tokenizarJava(codigo) {
+    const re = /(\/\/[^\n]*|\/\*[\s\S]*?\*\/)|("(?:\\.|[^"\\\n])*")|\b(\d+(?:\.\d+)?[fFdDlL]?)\b|\b(public|class|static|void|import|new|final|return|if|else|switch|case|break|default|for|while)\b|\b(int|double|float|long|char|boolean|String|Scanner|System|Math)\b/g;
+    let out = '', ultimo = 0, m;
+    while ((m = re.exec(codigo)) !== null) {
+        out += escaparHTML(codigo.slice(ultimo, m.index));
+        const cls = m[1] ? 'tk-com' : (m[2] || m[3]) ? 'tk-val' : m[4] ? 'tk-sel' : 'tk-prop';
+        out += `<span class="${cls}">${escaparHTML(m[0])}</span>`;
+        ultimo = re.lastIndex;
+    }
+    return out + escaparHTML(codigo.slice(ultimo));
 }
 
 function escaparHTML(texto) {
     return texto.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-// ============= VISTA PREVIA (HTML dado + CSS del estudiante) =============
+// ============= SALIDA DE EJEMPLO =============
 function actualizarPreview() {
-    const css = document.getElementById('edTxt').value;
-    const iframe = document.getElementById('pvFrame');
-    const html = `<!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8">
-<style>
-body { font-family: Arial, sans-serif; margin:0; padding:16px; }
-.categoria { margin-bottom: 18px; }
-.categorias-nav a { margin-right: 12px; }
-</style>
-<style>${css}</style>
-</head><body>${MENU_HTML}</body></html>`;
-    iframe.srcdoc = html;
+    if (estadoJuego.zonaActual === null) return;
+    document.getElementById('pvFrame').textContent = NIVELES[estadoJuego.zonaActual].salida || '';
 }
 
 function mostrarHTMLDado() {
@@ -907,13 +1226,18 @@ function verificarZona() {
     const chequeos = [];
     let todoOk = true;
 
+    const sinComentarios = css.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, '');
+    const sinCadenas = sinComentarios.replace(/"(?:\\.|[^"\\\n])*"/g, '""');
     nv.checks.forEach(chk => {
         let pasa;
-        if (chk.type === 'custom') {
-            pasa = chk.fn(css);
+        if (chk.type === 'nada_else') {
+            pasa = !/\belse\b/.test(sinCadenas);
         } else {
-            const regex = new RegExp(chk.regex, 'i');
-            pasa = regex.test(css);
+            const matches = ((chk.sc ? sinCadenas : sinComentarios).match(new RegExp(chk.regex, 'g')) || []).length;
+            const min = chk.min || 1;
+            pasa = matches >= min;
+            chk.msj0 = chk.msj0 || chk.msj;
+            chk.msj = chk.msj0 + (min > 1 ? ` (encontrados: ${matches}/${min})` : '');
         }
         if (!pasa) todoOk = false;
         chequeos.push({ pasa, msj: chk.msj });
@@ -973,7 +1297,7 @@ function actualizarBarra() {
     const completadas = NIVELES.slice(0, 8).filter((_, i) => (estadoJuego.mascara & (1 << i)) !== 0).length;
     const porcentaje = (completadas / 8) * 100;
     document.getElementById('barraProg').style.width = porcentaje + '%';
-    document.getElementById('txtProg').textContent = `Identidad visual: ${Math.round(porcentaje)}%`;
+    document.getElementById('txtProg').textContent = `Sistema de caja: ${Math.round(porcentaje)}%`;
     document.getElementById('hudZonas').textContent = `${completadas}/8`;
 }
 
@@ -1012,13 +1336,13 @@ function descargarPDF() {
     doc.setFontSize(9);
     doc.text('REPORTE DE PROYECTO - CAFE AROMA', 14, 24);
     doc.setFontSize(8);
-    doc.text('CSS - Ciencias de la Computacion - Ceibal', 14, 31);
+    doc.text('Java - Estructuras selectivas - Ciencias de la Computacion - Ceibal', 14, 31);
 
     y = 46;
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(40, 30, 20);
     doc.setFontSize(10);
-    doc.setFont('helvetica', 'bold'); doc.text('DISEÑADOR/A:', 14, y);
+    doc.setFont('helvetica', 'bold'); doc.text('PROGRAMADOR/A:', 14, y);
     doc.setFont('helvetica', 'normal'); doc.text(estadoJuego.nombre.toUpperCase(), 70, y);
     y += 8;
     doc.setFont('helvetica', 'bold'); doc.text('FECHA:', 14, y);
@@ -1040,7 +1364,7 @@ function descargarPDF() {
     doc.setDrawColor(196, 160, 110); doc.line(14, y, W - 14, y); y += 10;
 
     doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(40, 30, 20);
-    doc.text('CSS REALIZADO', 14, y); y += 8;
+    doc.text('CODIGO JAVA REALIZADO', 14, y); y += 8;
 
     const entregados = NIVELES.filter((nv, i) => (estadoJuego.mascara & (1 << i)) !== 0);
     if (entregados.length === 0) {
